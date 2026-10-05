@@ -1,0 +1,3367 @@
+@prefix :     <http://www.semanticweb.org/tanamanobat#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://www.semanticweb.org/tanamanobat> rdf:type owl:Ontology ;
+    rdfs:comment "Ontologi tanaman obat Indonesia. Sumber: Ensiklopedia Tumbuhan Obat Indonesia, Kemenkes RI (2018)." .
+
+#======================================================================
+# CLASSES
+#======================================================================
+
+:Tanaman rdf:type owl:Class ; rdfs:subClassOf owl:Thing ; rdfs:label "Tanaman" .
+:Tanaman_Obat rdf:type owl:Class ; rdfs:subClassOf :Tanaman ; rdfs:label "Tanaman Obat" .
+:Takson rdf:type owl:Class ; rdfs:subClassOf owl:Thing ; rdfs:label "Takson" .
+:Super_Divisi rdf:type owl:Class ; rdfs:subClassOf :Takson ; rdfs:label "Super Divisi" .
+:Divisi rdf:type owl:Class ; rdfs:subClassOf :Takson ; rdfs:label "Divisi" .
+:Kelas rdf:type owl:Class ; rdfs:subClassOf :Takson ; rdfs:label "Kelas" .
+:Bangsa rdf:type owl:Class ; rdfs:subClassOf :Takson ; rdfs:label "Bangsa" .
+:Suku rdf:type owl:Class ; rdfs:subClassOf :Takson ; rdfs:label "Suku" .
+:Marga rdf:type owl:Class ; rdfs:subClassOf :Takson ; rdfs:label "Marga" .
+:Morfologi_Daun rdf:type owl:Class ; rdfs:subClassOf owl:Thing ; rdfs:label "Morfologi Daun" .
+:Jenis_Daun rdf:type owl:Class ; rdfs:subClassOf :Morfologi_Daun ; rdfs:label "Jenis Daun" .
+:Bentuk_Daun rdf:type owl:Class ; rdfs:subClassOf :Morfologi_Daun ; rdfs:label "Bentuk Daun" .
+:Ujung_Daun rdf:type owl:Class ; rdfs:subClassOf :Morfologi_Daun ; rdfs:label "Ujung Daun" .
+:Tepi_Daun rdf:type owl:Class ; rdfs:subClassOf :Morfologi_Daun ; rdfs:label "Tepi Daun" .
+:Tulang_Daun rdf:type owl:Class ; rdfs:subClassOf :Morfologi_Daun ; rdfs:label "Tulang Daun" .
+:Permukaan_Daun rdf:type owl:Class ; rdfs:subClassOf :Morfologi_Daun ; rdfs:label "Permukaan Daun" .
+:Pangkal_Daun rdf:type owl:Class ; rdfs:subClassOf :Morfologi_Daun ; rdfs:label "Pangkal Daun" .
+:Warna_Daun rdf:type owl:Class ; rdfs:subClassOf :Morfologi_Daun ; rdfs:label "Warna Daun" .
+:Habitus rdf:type owl:Class ; rdfs:subClassOf owl:Thing ; rdfs:label "Habitus" .
+:Bagian_Tumbuhan rdf:type owl:Class ; rdfs:subClassOf owl:Thing ; rdfs:label "Bagian Tumbuhan" .
+:Kandungan_Kimia rdf:type owl:Class ; rdfs:subClassOf owl:Thing ; rdfs:label "Kandungan Kimia" .
+:Khasiat rdf:type owl:Class ; rdfs:subClassOf owl:Thing ; rdfs:label "Khasiat" .
+
+#======================================================================
+# OBJECT PROPERTIES
+#======================================================================
+
+:memilikiTakson rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Marga ; rdfs:label "memilikiTakson" .
+:indukTakson rdf:type owl:ObjectProperty ; rdfs:domain :Takson ; rdfs:range :Takson ; rdfs:label "indukTakson" .
+:memilikiHabitus rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Habitus ; rdfs:label "memilikiHabitus" .
+:memilikiJenisDaun rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Jenis_Daun ; rdfs:label "memilikiJenisDaun" .
+:memilikiBentukDaun rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Bentuk_Daun ; rdfs:label "memilikiBentukDaun" .
+:memilikiUjungDaun rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Ujung_Daun ; rdfs:label "memilikiUjungDaun" .
+:memilikiTepiDaun rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Tepi_Daun ; rdfs:label "memilikiTepiDaun" .
+:memilikiTulangDaun rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Tulang_Daun ; rdfs:label "memilikiTulangDaun" .
+:memilikiPermukaanDaun rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Permukaan_Daun ; rdfs:label "memilikiPermukaanDaun" .
+:memilikiPangkalDaun rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Pangkal_Daun ; rdfs:label "memilikiPangkalDaun" .
+:memilikiWarnaDaun rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Warna_Daun ; rdfs:label "memilikiWarnaDaun" .
+:memilikiBagian rdf:type owl:ObjectProperty ; rdfs:domain :Tanaman_Obat ; rdfs:range :Bagian_Tumbuhan ; rdfs:label "memilikiBagian" .
+:jenisBagian rdf:type owl:ObjectProperty ; rdfs:domain :Bagian_Tumbuhan ; rdfs:range :Bagian_Tumbuhan ; rdfs:label "jenisBagian" .
+:memilikiKandungan rdf:type owl:ObjectProperty ; rdfs:domain :Bagian_Tumbuhan ; rdfs:range :Kandungan_Kimia ; rdfs:label "memilikiKandungan" .
+:mengobati rdf:type owl:ObjectProperty ; rdfs:domain :Bagian_Tumbuhan ; rdfs:range :Khasiat ; rdfs:label "mengobati" .
+
+#======================================================================
+# DATA PROPERTIES
+#======================================================================
+
+:namaIndonesia rdf:type owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "namaIndonesia" .
+:namaLatin rdf:type owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "namaLatin" .
+:namaAsing rdf:type owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "namaAsing" .
+:farmakologi rdf:type owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "farmakologi" .
+:istilahBuku rdf:type owl:DatatypeProperty ; rdfs:range xsd:string ; rdfs:label "istilahBuku" .
+
+#======================================================================
+# TAKSON INSTANCES
+#======================================================================
+
+:T_Annona rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Annona" ; :indukTakson :T_Annonaceae .
+:T_Annonaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Annonaceae" ; :indukTakson :T_Magnoliales .
+:T_Apocynaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Apocynaceae" ; :indukTakson :T_Gentianales .
+:T_Artemisia rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Artemisia" ; :indukTakson :T_Asteraceae .
+:T_Asteraceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Asteraceae" ; :indukTakson :T_Asterales .
+:T_Asterales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Asterales" ; :indukTakson :T_Magnoliopsida .
+:T_Averrhoa rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Averrhoa" ; :indukTakson :T_Oxalidaceae .
+:T_Berberidaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Berberidaceae" ; :indukTakson :T_Ranunculales .
+:T_Berberis rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Berberis" ; :indukTakson :T_Berberidaceae .
+:T_Boesenbergia rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Boesenbergia" ; :indukTakson :T_Zingiberaceae .
+:T_Brugmansia rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Brugmansia" ; :indukTakson :T_Solanaceae .
+:T_Bryophyllum rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Bryophyllum" ; :indukTakson :T_Crassulaceae .
+:T_Calophyllum rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Calophyllum" ; :indukTakson :T_Clusiaceae .
+:T_Cananga rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Cananga" ; :indukTakson :T_Annonaceae .
+:T_Canna rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Canna" ; :indukTakson :T_Cannaceae .
+:T_Cannaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Cannaceae" ; :indukTakson :T_Zingiberales .
+:T_Caryophyllales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Caryophyllales" ; :indukTakson :T_Magnoliopsida .
+:T_Chrysopogon rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Chrysopogon" ; :indukTakson :T_Poaceae .
+:T_Cinchona rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Cinchona" ; :indukTakson :T_Rubiaceae .
+:T_Clausena rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Clausena" ; :indukTakson :T_Rutaceae .
+:T_Clusiaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Clusiaceae" ; :indukTakson :T_Theales .
+:T_Coix rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Coix" ; :indukTakson :T_Poaceae .
+:T_Cola rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Cola" ; :indukTakson :T_Sterculiaceae .
+:T_Combretaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Combretaceae" ; :indukTakson :T_Myrtales .
+:T_Combretum rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Combretum" ; :indukTakson :T_Combretaceae .
+:T_Convolvulaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Convolvulaceae" ; :indukTakson :T_Solanales .
+:T_Cosmos rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Cosmos" ; :indukTakson :T_Asteraceae .
+:T_Crassulaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Crassulaceae" ; :indukTakson :T_Rosales .
+:T_Cucurbita rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Cucurbita" ; :indukTakson :T_Cucurbitaceae .
+:T_Cucurbitaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Cucurbitaceae" ; :indukTakson :T_Cucurbitales .
+:T_Cucurbitales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Cucurbitales" ; :indukTakson :T_Magnoliopsida .
+:T_Cycadaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Cycadaceae" ; :indukTakson :T_Cycadales .
+:T_Cycadales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Cycadales" ; :indukTakson :T_Cycadopsida .
+:T_Cycadophyta rdf:type owl:NamedIndividual , :Divisi ; rdfs:label "Cycadophyta" ; :indukTakson :T_Spermatophyta .
+:T_Cycadopsida rdf:type owl:NamedIndividual , :Kelas ; rdfs:label "Cycadopsida" ; :indukTakson :T_Cycadophyta .
+:T_Cycas rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Cycas" ; :indukTakson :T_Cycadaceae .
+:T_Cyclea rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Cyclea" ; :indukTakson :T_Menispermaceae .
+:T_Cyperales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Cyperales" ; :indukTakson :T_Liliopsida .
+:T_Cyphomandra rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Cyphomandra" ; :indukTakson :T_Solanaceae .
+:T_Etlingera rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Etlingera" ; :indukTakson :T_Zingiberaceae .
+:T_Fabaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Fabaceae" ; :indukTakson :T_Fabales .
+:T_Fabales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Fabales" ; :indukTakson :T_Magnoliopsida .
+:T_Gentianales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Gentianales" ; :indukTakson :T_Magnoliopsida .
+:T_Geraniales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Geraniales" ; :indukTakson :T_Magnoliopsida .
+:T_Ipomoea rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Ipomoea" ; :indukTakson :T_Convolvulaceae .
+:T_Kaempferia rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Kaempferia" ; :indukTakson :T_Zingiberaceae .
+:T_Lagerstroemia rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Lagerstroemia" ; :indukTakson :T_Lythraceae .
+:T_Lamiaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Lamiaceae" ; :indukTakson :T_Lamiales .
+:T_Lamiales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Lamiales" ; :indukTakson :T_Magnoliopsida .
+:T_Lansium rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Lansium" ; :indukTakson :T_Meliaceae .
+:T_Lantana rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Lantana" ; :indukTakson :T_Verbenaceae .
+:T_Lauraceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Lauraceae" ; :indukTakson :T_Laurales .
+:T_Laurales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Laurales" ; :indukTakson :T_Magnoliopsida .
+:T_Leucas rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Leucas" ; :indukTakson :T_Lamiaceae .
+:T_Liliopsida rdf:type owl:NamedIndividual , :Kelas ; rdfs:label "Liliopsida" ; :indukTakson :T_Magnoliophyta .
+:T_Litsea rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Litsea" ; :indukTakson :T_Lauraceae .
+:T_Lythraceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Lythraceae" ; :indukTakson :T_Myrtales .
+:T_Magnolia rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Magnolia" ; :indukTakson :T_Magnoliaceae .
+:T_Magnoliaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Magnoliaceae" ; :indukTakson :T_Magnoliales .
+:T_Magnoliales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Magnoliales" ; :indukTakson :T_Magnoliopsida .
+:T_Magnoliophyta rdf:type owl:NamedIndividual , :Divisi ; rdfs:label "Magnoliophyta" ; :indukTakson :T_Spermatophyta .
+:T_Magnoliopsida rdf:type owl:NamedIndividual , :Kelas ; rdfs:label "Magnoliopsida" ; :indukTakson :T_Magnoliophyta .
+:T_Malus rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Malus" ; :indukTakson :T_Rosaceae .
+:T_Malvales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Malvales" ; :indukTakson :T_Magnoliopsida .
+:T_Maranta rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Maranta" ; :indukTakson :T_Marantaceae .
+:T_Marantaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Marantaceae" ; :indukTakson :T_Zingiberales .
+:T_Meliaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Meliaceae" ; :indukTakson :T_Sapindales .
+:T_Menispermaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Menispermaceae" ; :indukTakson :T_Ranales .
+:T_Mentha rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Mentha" ; :indukTakson :T_Lamiaceae .
+:T_Mirabilis rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Mirabilis" ; :indukTakson :T_Nyctaginaceae .
+:T_Myrtales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Myrtales" ; :indukTakson :T_Magnoliopsida .
+:T_Nerium rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Nerium" ; :indukTakson :T_Apocynaceae .
+:T_Nyctaginaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Nyctaginaceae" ; :indukTakson :T_Caryophyllales .
+:T_Ocimum rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Ocimum" ; :indukTakson :T_Lamiaceae .
+:T_Oxalidaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Oxalidaceae" ; :indukTakson :T_Geraniales .
+:T_Pachyrhizus rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Pachyrhizus" ; :indukTakson :T_Fabaceae .
+:T_Pandanaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Pandanaceae" ; :indukTakson :T_Pandanales .
+:T_Pandanales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Pandanales" ; :indukTakson :T_Liliopsida .
+:T_Pandanus rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Pandanus" ; :indukTakson :T_Pandanaceae .
+:T_Parkia rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Parkia" ; :indukTakson :T_Fabaceae .
+:T_Poaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Poaceae" ; :indukTakson :T_Cyperales .
+:T_Ranales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Ranales" ; :indukTakson :T_Magnoliopsida .
+:T_Ranunculales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Ranunculales" ; :indukTakson :T_Magnoliopsida .
+:T_Rosaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Rosaceae" ; :indukTakson :T_Rosales .
+:T_Rosales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Rosales" ; :indukTakson :T_Magnoliopsida .
+:T_Rubiaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Rubiaceae" ; :indukTakson :T_Rubiales .
+:T_Rubiales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Rubiales" ; :indukTakson :T_Magnoliopsida .
+:T_Rutaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Rutaceae" ; :indukTakson :T_Rutales .
+:T_Rutales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Rutales" ; :indukTakson :T_Magnoliopsida .
+:T_Sapindales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Sapindales" ; :indukTakson :T_Magnoliopsida .
+:T_Solanaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Solanaceae" ; :indukTakson :T_Solanales .
+:T_Solanales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Solanales" ; :indukTakson :T_Magnoliopsida .
+:T_Spermatophyta rdf:type owl:NamedIndividual , :Super_Divisi ; rdfs:label "Spermatophyta" .
+:T_Sterculiaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Sterculiaceae" ; :indukTakson :T_Malvales .
+:T_Theales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Theales" ; :indukTakson :T_Magnoliopsida .
+:T_Verbenaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Verbenaceae" ; :indukTakson :T_Lamiales .
+:T_Zingiberaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Zingiberaceae" ; :indukTakson :T_Zingiberales .
+:T_Zingiberales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Zingiberales" ; :indukTakson :T_Liliopsida .
+:T_Polygala rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Polygala" ; :indukTakson :T_Polygalaceae .
+:T_Polygalaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Polygalaceae" ; :indukTakson :T_Polygalales .
+:T_Polygalales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Polygalales" ; :indukTakson :T_Magnoliopsida .
+:T_Portulaca rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Portulaca" ; :indukTakson :T_Portulacaceae .
+:T_Portulacaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Portulacaceae" ; :indukTakson :T_Caryophyllales .
+:T_Pseuderanthemum rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Pseuderanthemum" ; :indukTakson :T_Acanthaceae .
+:T_Acanthaceae rdf:type owl:NamedIndividual , :Suku ; rdfs:label "Acanthaceae" ; :indukTakson :T_Scrophulariales .
+:T_Scrophulariales rdf:type owl:NamedIndividual , :Bangsa ; rdfs:label "Scrophulariales" ; :indukTakson :T_Magnoliopsida .
+:T_Rauvolfia rdf:type owl:NamedIndividual , :Marga ; rdfs:label "Rauvolfia" ; :indukTakson :T_Apocynaceae .
+
+#======================================================================
+# MORFOLOGI DAUN INSTANCES
+#======================================================================
+
+:JD_Majemuk rdf:type owl:NamedIndividual , :Jenis_Daun ; rdfs:label "Majemuk" .
+:JD_Tunggal rdf:type owl:NamedIndividual , :Jenis_Daun ; rdfs:label "Tunggal" .
+
+:BD_Bulat rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Bulat" .
+:BD_Bulat_memanjang rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Bulat memanjang" .
+:BD_Bulat_telur rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Bulat telur" .
+:BD_Bulat_telur_memanjang rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Bulat telur memanjang" .
+:BD_Bulat_telur_terbalik rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Bulat telur terbalik" .
+:BD_Elips rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Elips" .
+:BD_Elips_memanjang rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Elips memanjang" .
+:BD_Lanset rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Lanset" .
+:BD_Memanjang rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Memanjang" .
+:BD_Perisai rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Perisai" .
+:BD_Lanset_memanjang rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Lanset memanjang" .
+:BD_Lanset_terbalik rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Lanset terbalik" .
+:BD_Oval rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Oval" .
+:BD_Bulat_telur_terbalik_memanjang rdf:type owl:NamedIndividual , :Bentuk_Daun ; rdfs:label "Bulat telur terbalik memanjang" .
+
+:UD_Membulat rdf:type owl:NamedIndividual , :Ujung_Daun ; rdfs:label "Membulat" .
+:UD_Meruncing rdf:type owl:NamedIndividual , :Ujung_Daun ; rdfs:label "Meruncing" .
+:UD_Runcing rdf:type owl:NamedIndividual , :Ujung_Daun ; rdfs:label "Runcing" .
+:UD_Tumpul rdf:type owl:NamedIndividual , :Ujung_Daun ; rdfs:label "Tumpul" .
+:UD_Rompang rdf:type owl:NamedIndividual , :Ujung_Daun ; rdfs:label "Rompang" .
+
+:TD_Berduri rdf:type owl:NamedIndividual , :Tepi_Daun ; rdfs:label "Berduri" .
+:TD_Bergerigi rdf:type owl:NamedIndividual , :Tepi_Daun ; rdfs:label "Bergerigi" .
+:TD_Beringgit rdf:type owl:NamedIndividual , :Tepi_Daun ; rdfs:label "Beringgit" .
+:TD_Berlekuk rdf:type owl:NamedIndividual , :Tepi_Daun ; rdfs:label "Berlekuk" .
+:TD_Berombak rdf:type owl:NamedIndividual , :Tepi_Daun ; rdfs:label "Berombak" .
+:TD_Rata rdf:type owl:NamedIndividual , :Tepi_Daun ; rdfs:label "Rata" .
+:TD_Bercangap rdf:type owl:NamedIndividual , :Tepi_Daun ; rdfs:label "Bercangap" .
+
+:TL_Menjari rdf:type owl:NamedIndividual , :Tulang_Daun ; rdfs:label "Menjari" .
+:TL_Menyirip rdf:type owl:NamedIndividual , :Tulang_Daun ; rdfs:label "Menyirip" .
+:TL_Sejajar rdf:type owl:NamedIndividual , :Tulang_Daun ; rdfs:label "Sejajar" .
+
+:PM_Berbulu rdf:type owl:NamedIndividual , :Permukaan_Daun ; rdfs:label "Berbulu" .
+:PM_Berbulu_halus rdf:type owl:NamedIndividual , :Permukaan_Daun ; rdfs:label "Berbulu halus" .
+:PM_Berbulu_kasar rdf:type owl:NamedIndividual , :Permukaan_Daun ; rdfs:label "Berbulu kasar" .
+:PM_Gundul rdf:type owl:NamedIndividual , :Permukaan_Daun ; rdfs:label "Gundul" .
+:PM_Kasap rdf:type owl:NamedIndividual , :Permukaan_Daun ; rdfs:label "Kasap" .
+:PM_Kasar rdf:type owl:NamedIndividual , :Permukaan_Daun ; rdfs:label "Kasar" .
+:PM_Licin rdf:type owl:NamedIndividual , :Permukaan_Daun ; rdfs:label "Licin" .
+:PM_Mengkilat rdf:type owl:NamedIndividual , :Permukaan_Daun ; rdfs:label "Mengkilat" .
+
+:PK_Berlekuk rdf:type owl:NamedIndividual , :Pangkal_Daun ; rdfs:label "Berlekuk" .
+:PK_Membulat rdf:type owl:NamedIndividual , :Pangkal_Daun ; rdfs:label "Membulat" .
+:PK_Meruncing rdf:type owl:NamedIndividual , :Pangkal_Daun ; rdfs:label "Meruncing" .
+:PK_Rata rdf:type owl:NamedIndividual , :Pangkal_Daun ; rdfs:label "Rata" .
+:PK_Runcing rdf:type owl:NamedIndividual , :Pangkal_Daun ; rdfs:label "Runcing" .
+:PK_Terpancung rdf:type owl:NamedIndividual , :Pangkal_Daun ; rdfs:label "Terpancung" .
+:PK_Tidak_simetris rdf:type owl:NamedIndividual , :Pangkal_Daun ; rdfs:label "Tidak simetris" .
+:PK_Tumpul rdf:type owl:NamedIndividual , :Pangkal_Daun ; rdfs:label "Tumpul" .
+
+:WD_Cokelat_kemerahan rdf:type owl:NamedIndividual , :Warna_Daun ; rdfs:label "Cokelat kemerahan" .
+:WD_Hijau rdf:type owl:NamedIndividual , :Warna_Daun ; rdfs:label "Hijau" .
+:WD_Hijau_muda rdf:type owl:NamedIndividual , :Warna_Daun ; rdfs:label "Hijau muda" .
+:WD_Hijau_tua rdf:type owl:NamedIndividual , :Warna_Daun ; rdfs:label "Hijau tua" .
+:WD_Merah rdf:type owl:NamedIndividual , :Warna_Daun ; rdfs:label "Merah" .
+:WD_Putih_kehijauan rdf:type owl:NamedIndividual , :Warna_Daun ; rdfs:label "Putih kehijauan" .
+:WD_Ungu rdf:type owl:NamedIndividual , :Warna_Daun ; rdfs:label "Ungu" .
+:WD_Bervariasi rdf:type owl:NamedIndividual , :Warna_Daun ; rdfs:label "Bervariasi" .
+
+#======================================================================
+# HABITUS INSTANCES
+#======================================================================
+
+:H_Liana rdf:type owl:NamedIndividual , :Habitus ; rdfs:label "Liana" .
+:H_Perdu rdf:type owl:NamedIndividual , :Habitus ; rdfs:label "Perdu" .
+:H_Pohon rdf:type owl:NamedIndividual , :Habitus ; rdfs:label "Pohon" .
+:H_Semak rdf:type owl:NamedIndividual , :Habitus ; rdfs:label "Semak" .
+:H_Terna rdf:type owl:NamedIndividual , :Habitus ; rdfs:label "Terna" .
+
+#======================================================================
+# JENIS BAGIAN TUMBUHAN
+#======================================================================
+
+:BG_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Akar" .
+:BG_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Batang" .
+:BG_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Biji" .
+:BG_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Buah" .
+:BG_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Bunga" .
+:BG_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Daun" .
+:BG_Herba rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Herba" .
+:BG_Kulit_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Kulit Batang" .
+:BG_Kulit_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Kulit Biji" .
+:BG_Kulit_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Kulit Buah" .
+:BG_Kulit_Kayu rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Kulit Kayu" .
+:BG_Rambut_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Rambut Batang" .
+:BG_Ranting rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Ranting" .
+:BG_Rimpang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Rimpang" .
+:BG_Tepung_Kulit_Kayu rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Tepung Kulit Kayu" .
+:BG_Umbi rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ; rdfs:label "Umbi" .
+
+#======================================================================
+# KANDUNGAN KIMIA INSTANCES
+#======================================================================
+
+:KK_5_metoksiisolarikiresinol_3alfa_O_beta_D_glukopiranosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "(+)-5'metoksiisolarikiresinol 3alfa-O-beta-D-glukopiranosid" .
+:KK_panduratin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "(+)-panduratin A" .
+:KK_E_beta_dodekan rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "(E)-beta-dodekan" .
+:KK_E_beta_farnesen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "(E)-beta-farnesen" .
+:KK_E_E_farnesil_asetat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "(E,E)-farnesil asetat" .
+:KK_1_1_dodekanediol_diasetat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "1,1-dodekanediol diasetat" .
+:KK_1_3_4_oksadiazol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "1,3,4-oksadiazol" .
+:KK_1_7_bis_4_hidroksifenil_1_4_6_heptatrien_3_on rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "1,7-bis(4-hidroksifenil)-1,4,6-heptatrien-3-on" .
+:KK_1_7_dihidroksi_6_metoksixanton rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "1,7-dihidroksi-6-metoksixanton" .
+:KK_1_8_sineol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "1,8-sineol" .
+:KK_1_dodekanol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "1-dodekanol" .
+:KK_10_hidroksisandin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "10-hidroksisandin" .
+:KK_10_metoksinkonamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "10-metoksinkonamin" .
+:KK_11_12_anhidroinofilum_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "11,12-anhidroinofilum A" .
+:KK_17_pentatriakonten rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "17-pentatriakonten" .
+:KK_2_4_6_trihidroksikalkon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "2',4',6'-trihidroksikalkon" .
+:KK_2_6_dihidroksi_4_metoksikalkon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "2',6'-dihidroksi-4'-metoksikalkon" .
+:KK_2_3_dihidro_3_5_dihidroksi_6_metil_4H_piran_4_on rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "2,3-dihidro-3,5-dihidroksi-6-metil-4H-piran-4-on" .
+:KK_2_6_dimetoksi_p_hidrokinon_1_O_beta_D_glukopiranosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "2,6-dimetoksi-p-hidrokinon 1-O-beta-D-glukopiranosid" .
+:KK_2_asetil_1_pirolin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "2-asetil-1-pirolin" .
+:KK_2_epi_lentiginosin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "2-epi-lentiginosin" .
+:KK_2_metil_1_3_4_oksadiazol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "2-metil[1,3,4]oksadiazol" .
+:KK_21alfa_hidroksinosera_8_26_14_dien_3_on rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "21alfa-hidroksinosera-8(26),14-dien-3-on" .
+:KK_3_6_di_O_p_kumaroil_beta_D_fruktofuranosil_6_O_asetil_alfa_D_glukopiranosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "3,6-di-O-p-kumaroil-beta-D-fruktofuranosil 6-O-asetil-alfa-D-glukopiranosid" .
+:KK_3_O_asetil_alfa_D_glukopiranosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "3-O-asetil-alfa-D-glukopiranosid" .
+:KK_3_O_glikosidik_flavonol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "3-O-glikosidik flavonol" .
+:KK_3_epikuinamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "3-epikuinamin" .
+:KK_3beta_hidroksinosera_8_26_14_dien_21_on rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "3beta-hidroksinosera-8(26),14-dien-21-on" .
+:KK_4_ketopinoresinol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "4-ketopinoresinol" .
+:KK_5_7_dimetoksiflavanon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "5,7-dimetoksiflavanon" .
+:KK_5_hidroksimetil_2_furfural rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "5-hidroksimetil-2-furfural" .
+:KK_5alfa_8alfa_epidioksiergosta_6_22_dien_3beta_ol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "5alfa,8alfa-epidioksiergosta-6,22-dien-3beta-ol" .
+:KK_7_4_dihidroksi_5_metoksiflavanon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "7,4'-dihidroksi-5-metoksiflavanon" .
+:KK_9_epikuinidin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "9-epikuinidin" .
+:KK_9_epikuinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "9-epikuinin" .
+:KK_AC_briopilin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "AC briopilin" .
+:KK_Adenosin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Adenosin" .
+:KK_Akasetin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Akasetin" .
+:KK_Alkaloid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Alkaloid" .
+:KK_Alkaloid_kuinolon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Alkaloid kuinolon" .
+:KK_Alpinetin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Alpinetin" .
+:KK_Amorfin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Amorfin" .
+:KK_Amyrin_beta rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Amyrin beta" .
+:KK_Andirobin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Andirobin" .
+:KK_Anisaldehid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anisaldehid" .
+:KK_Anolobin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anolobin" .
+:KK_Anomurin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anomurin" .
+:KK_Anomurisin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anomurisin" .
+:KK_Anomurisin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anomurisin A" .
+:KK_Anomurisin_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anomurisin B" .
+:KK_Anonain rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anonain" .
+:KK_Anonasin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anonasin" .
+:KK_Anonasin_10_on rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anonasin-10-on" .
+:KK_Anonatatin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anonatatin" .
+:KK_Anonin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anonin" .
+:KK_Anoskuamosin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anoskuamosin A" .
+:KK_Anotemoyin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Anotemoyin" .
+:KK_Antosianin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Antosianin" .
+:KK_Antosianosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Antosianosid" .
+:KK_Antrakinon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Antrakinon" .
+:KK_Apigenin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Apigenin" .
+:KK_Apigenin_6_C_beta_L_fukopiranosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Apigenin-6-C-beta-L-fukopiranosid" .
+:KK_Aporfin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Aporfin" .
+:KK_Arabinosa rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Arabinosa" .
+:KK_Aromadendrin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Aromadendrin" .
+:KK_Asam_alfitolat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam alfitolat" .
+:KK_Asam_arakidik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam arakidik" .
+:KK_Asam_asetat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam asetat" .
+:KK_Asam_asiatat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam asiatat" .
+:KK_Asam_askorbat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam askorbat" .
+:KK_Asam_behenik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam behenik" .
+:KK_Asam_betulonat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam betulonat" .
+:KK_Asam_cefeoil_4_hidroksifenilaktat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam cefeoil-4'-hidroksifenilaktat" .
+:KK_Asam_elagat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam elagat" .
+:KK_Asam_ferulat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam ferulat" .
+:KK_Asam_galat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam galat" .
+:KK_Asam_heksadekanoat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam heksadekanoat" .
+:KK_Asam_hidroksinamat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam hidroksinamat" .
+:KK_Asam_kafeat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam kafeat" .
+:KK_Asam_kafeik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam kafeik" .
+:KK_Asam_kalofinat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam kalofinat" .
+:KK_Asam_klorogenat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam klorogenat" .
+:KK_Asam_klorogenik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam klorogenik" .
+:KK_Asam_korosolat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam korosolat" .
+:KK_Asam_kriptoklorogenat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam kriptoklorogenat" .
+:KK_Asam_kuinovat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam kuinovat" .
+:KK_Asam_kuiskualat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam kuiskualat" .
+:KK_Asam_kumarat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam kumarat" .
+:KK_Asam_kumarik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam kumarik" .
+:KK_Asam_kusenat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam kusenat" .
+:KK_Asam_lansionat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam lansionat" .
+:KK_Asam_lantanilat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam lantanilat" .
+:KK_Asam_lasat_3_etil_ester rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam lasat 3-etil ester" .
+:KK_Asam_lemak rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam lemak" .
+:KK_Asam_linoleat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam linoleat" .
+:KK_Asam_malat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam malat" .
+:KK_Asam_neoklorogenat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam neoklorogenat" .
+:KK_Asam_nikotinat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam nikotinat" .
+:KK_Asam_oksalat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam oksalat" .
+:KK_Asam_oleanolat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam oleanolat" .
+:KK_Asam_palmitat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam palmitat" .
+:KK_Asam_propanoat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam propanoat" .
+:KK_Asam_protokatekuik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam protokatekuik" .
+:KK_Asam_rosmarinat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam rosmarinat" .
+:KK_Asam_salvianolat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam salvianolat" .
+:KK_Asam_sinamat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam sinamat" .
+:KK_Asam_sinkolat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam sinkolat" .
+:KK_Asam_siringik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam siringik" .
+:KK_Asam_suksinat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam suksinat" .
+:KK_Asam_ursolat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asam ursolat" .
+:KK_Asantosianosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asantosianosid" .
+:KK_Asetogenin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Asetogenin" .
+:KK_Astragalin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Astragalin" .
+:KK_Aterosperminin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Aterosperminin" .
+:KK_Atropin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Atropin" .
+:KK_Avikularin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Avikularin" .
+:KK_Azadiradion rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Azadiradion" .
+:KK_Benzenoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Benzenoid" .
+:KK_Benzil_asetat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Benzil asetat" .
+:KK_Benzil_benzoat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Benzil benzoat" .
+:KK_Benzil_salisilat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Benzil salisilat" .
+:KK_Benzil_1_O_beta_D_glukopiranosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Benzil-1-O-beta-D-glukopiranosid" .
+:KK_Betain rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Betain" .
+:KK_Boesenbergin_A_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Boesenbergin A/B" .
+:KK_Boldine rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Boldine" .
+:KK_Borneol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Borneol" .
+:KK_Brassikasterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Brassikasterol" .
+:KK_Briopilin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Briopilin" .
+:KK_Briopilol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Briopilol" .
+:KK_Briopinol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Briopinol" .
+:KK_Briopolenon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Briopolenon" .
+:KK_Briopolon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Briopolon" .
+:KK_Bufadienolid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Bufadienolid" .
+:KK_Bulatasin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Bulatasin" .
+:KK_Bulatasinon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Bulatasinon" .
+:KK_C_briotoksin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "C briotoksin" .
+:KK_Ceramide rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Ceramide" .
+:KK_Delfinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Delfinin" .
+:KK_Demetoksikurkumin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Demetoksikurkumin" .
+:KK_Dentatin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Dentatin" .
+:KK_Diarilheptanoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Diarilheptanoid" .
+:KK_Dihidrokarvon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Dihidrokarvon" .
+:KK_Dihidrokuinidin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Dihidrokuinidin" .
+:KK_Dihidrokuinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Dihidrokuinin" .
+:KK_Diterpen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Diterpen" .
+:KK_Dodekanol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Dodekanol" .
+:KK_Domestikulid_A_E rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Domestikulid A-E" .
+:KK_Dukunolid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Dukunolid" .
+:KK_Elagitanin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Elagitanin" .
+:KK_Epigalokatekin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Epigalokatekin" .
+:KK_Epiglobulol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Epiglobulol" .
+:KK_Epikatekin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Epikatekin" .
+:KK_Eriodiktiol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Eriodiktiol" .
+:KK_Etil_lansiolat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Etil lansiolat" .
+:KK_Etil_sinamat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Etil sinamat" .
+:KK_Etil_trans_p_metoksi_sinamat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Etil-trans p-metoksi sinamat" .
+:KK_Eugenol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Eugenol" .
+:KK_Fenil_etanoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Fenil etanoid" .
+:KK_Fenilpropanoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Fenilpropanoid" .
+:KK_Fenol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Fenol" .
+:KK_Fenolik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Fenolik" .
+:KK_Fitosterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Fitosterol" .
+:KK_Flavanon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Flavanon" .
+:KK_Flavokawain rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Flavokawain" .
+:KK_Flavon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Flavon" .
+:KK_Flavonoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Flavonoid" .
+:KK_Floretin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Floretin" .
+:KK_Flosin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Flosin A" .
+:KK_Flosin_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Flosin B" .
+:KK_Friedelin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Friedelin" .
+:KK_Furfural rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Furfural" .
+:KK_Galotanin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Galotanin" .
+:KK_Garam_fosfat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Garam fosfat" .
+:KK_Geranil_asetat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Geranil asetat" .
+:KK_Geraniol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Geraniol" .
+:KK_Germakren_D rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Germakren D" .
+:KK_Gigantetrosin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Gigantetrosin A" .
+:KK_Glausin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Glausin" .
+:KK_Glikolipid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Glikolipid" .
+:KK_Glikosida rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Glikosida" .
+:KK_Glikosida_iridoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Glikosida iridoid" .
+:KK_Glikosida_jantung rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Glikosida jantung" .
+:KK_Glutinol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Glutinol" .
+:KK_Goniotalamisin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Goniotalamisin" .
+:KK_Helikrisetin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Helikrisetin" .
+:KK_Hentriakontan rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Hentriakontan" .
+:KK_Hispiludin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Hispiludin" .
+:KK_Ikterogenin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Ikterogenin" .
+:KK_Inofilum_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Inofilum A" .
+:KK_Inofilum_C rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Inofilum C" .
+:KK_Inofilum_E rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Inofilum E" .
+:KK_Isofukosterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Isofukosterol" .
+:KK_Isokoridin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Isokoridin" .
+:KK_Isokumarin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Isokumarin" .
+:KK_Isosifonodin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Isosifonodin" .
+:KK_Isosinkofilamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Isosinkofilamin" .
+:KK_Junipen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Junipen" .
+:KK_Kadenen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kadenen" .
+:KK_Kaempferid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kaempferid" .
+:KK_Kaempferol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kaempferol" .
+:KK_Kafein rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kafein" .
+:KK_Kalistegin_B1 rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kalistegin B1" .
+:KK_Kalistegin_B2 rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kalistegin B2" .
+:KK_Kalistegin_B3 rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kalistegin B3" .
+:KK_Kalistegin_C1 rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kalistegin C1" .
+:KK_Kalofiloid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kalofiloid" .
+:KK_Kalsium rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kalsium" .
+:KK_Kamfen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kamfen" .
+:KK_Kampesterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kampesterol" .
+:KK_Kanangaionosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kanangaionosid" .
+:KK_Kanangalignan rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kanangalignan" .
+:KK_Kanangaterpen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kanangaterpen" .
+:KK_Kanangon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kanangon" .
+:KK_Karambolaflavon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Karambolaflavon" .
+:KK_Kardamonin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kardamonin" .
+:KK_Kardenolid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kardenolid" .
+:KK_Kariofilen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kariofilen" .
+:KK_Karoten rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Karoten" .
+:KK_Karvon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Karvon" .
+:KK_Karyofilen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Karyofilen" .
+:KK_Katekin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Katekin" .
+:KK_Klausenidin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Klausenidin" .
+:KK_Klauserin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Klauserin" .
+:KK_Klausin_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Klausin B" .
+:KK_Klausin_D rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Klausin D" .
+:KK_Klausin_TY rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Klausin TY" .
+:KK_Klerosterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Klerosterol" .
+:KK_Klionasterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Klionasterol" .
+:KK_Klorogenik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Klorogenik" .
+:KK_Kloven rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kloven" .
+:KK_Kodisterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kodisterol" .
+:KK_Koklaurin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Koklaurin" .
+:KK_Kokosanolid_A_C rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kokosanolid A-C" .
+:KK_Kolin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kolin" .
+:KK_Koreksimin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Koreksimin" .
+:KK_Koridin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Koridin" .
+:KK_Krisoeriol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Krisoeriol" .
+:KK_Kuersetin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuersetin" .
+:KK_Kuinamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuinamin" .
+:KK_Kuinidin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuinidin" .
+:KK_Kuinidin_N_4_oksid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuinidin-N(4)-oksid" .
+:KK_Kuinidinon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuinidinon" .
+:KK_Kuinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuinin" .
+:KK_Kuinin_N_4_oksid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuinin-N(4)-oksid" .
+:KK_Kuininon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuininon" .
+:KK_Kuinon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuinon" .
+:KK_Kuiskualin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuiskualin A" .
+:KK_Kuiskualin_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kuiskualin B" .
+:KK_Kukurbitosid_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kukurbitosid A" .
+:KK_Kumarin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kumarin" .
+:KK_Kusimol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kusimol" .
+:KK_Kusimon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kusimon" .
+:KK_Kusinol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kusinol" .
+:KK_Kusinol_asetat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kusinol asetat" .
+:KK_Kusol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kusol" .
+:KK_L_asparagin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "L-asparagin" .
+:KK_L_prolin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "L-prolin" .
+:KK_Lagerstanin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Lagerstanin A" .
+:KK_Lagerstanin_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Lagerstanin B" .
+:KK_Lagerstanin_C rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Lagerstanin C" .
+:KK_Lamestikumin_A_F rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Lamestikumin A-F" .
+:KK_Lantaden_A_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Lantaden A-B" .
+:KK_Laurotetanine rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Laurotetanine" .
+:KK_Lignan rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Lignan" .
+:KK_Likopen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Likopen" .
+:KK_Limonen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Limonen" .
+:KK_Limonoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Limonoid" .
+:KK_Linalool rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Linalool" .
+:KK_Linifoliol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Linifoliol" .
+:KK_Linifolisid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Linifolisid" .
+:KK_Liriodenin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Liriodenin" .
+:KK_Lupeol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Lupeol" .
+:KK_Lutein rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Lutein" .
+:KK_Meksikanolid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Meksikanolid" .
+:KK_Mentol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Mentol" .
+:KK_Metil_angolensat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Metil angolensat" .
+:KK_Metil_benzoat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Metil benzoat" .
+:KK_Metil_eugenol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Metil eugenol" .
+:KK_Minyak_atsiri rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Minyak atsiri" .
+:KK_Mirisetin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Mirisetin" .
+:KK_Miristik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Miristik" .
+:KK_Monoterpen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Monoterpen" .
+:KK_Mukonal rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Mukonal" .
+:KK_Murayanin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Murayanin" .
+:KK_Murikatetrosin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Murikatetrosin A" .
+:KK_Murikatetrosin_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Murikatetrosin B" .
+:KK_N_metil_trans_4_hidroksi_L_prolin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "N-metil-trans-4-hidroksi-L-prolin" .
+:KK_N_metillaurotetanin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "N-metillaurotetanin" .
+:KK_Naringenin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Naringenin" .
+:KK_Neprotin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Neprotin" .
+:KK_Neriin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Neriin" .
+:KK_Norboldine rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Norboldine" .
+:KK_Nordentantin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Nordentantin" .
+:KK_Norisokoridin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Norisokoridin" .
+:KK_Norisoprenoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Norisoprenoid" .
+:KK_Norkoridin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Norkoridin" .
+:KK_Norlaurelin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Norlaurelin" .
+:KK_Norushinsunin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Norushinsunin" .
+:KK_Oleandrin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Oleandrin" .
+:KK_Oleoresin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Oleoresin" .
+:KK_Oligosakarida rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Oligosakarida" .
+:KK_Onoseranoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Onoseranoid" .
+:KK_Onoseranoid_triterpen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Onoseranoid triterpen" .
+:KK_Pakierizon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pakierizon" .
+:KK_Parthenolid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Parthenolid" .
+:KK_Pati rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pati" .
+:KK_Patuletin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Patuletin" .
+:KK_Pektin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pektin" .
+:KK_Pektolinarigenin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pektolinarigenin" .
+:KK_Pektolinarin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pektolinarin" .
+:KK_Pentadekan rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pentadekan" .
+:KK_Peposterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Peposterol" .
+:KK_Pinocembrin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pinocembrin" .
+:KK_Pinosembrin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pinosembrin" .
+:KK_Pinostrobin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pinostrobin" .
+:KK_Piruvat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Piruvat" .
+:KK_Polifenol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Polifenol" .
+:KK_Proantosianidin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Proantosianidin" .
+:KK_Protokatekik rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Protokatekik" .
+:KK_Pseudotaraksasterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pseudotaraksasterol" .
+:KK_Pulegon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Pulegon" .
+:KK_Reginin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Reginin A" .
+:KK_Reginin_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Reginin B" .
+:KK_Reginin_C rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Reginin C" .
+:KK_Reginin_D rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Reginin D" .
+:KK_Reinoutrin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Reinoutrin" .
+:KK_Remijinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Remijinin" .
+:KK_Retikulin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Retikulin" .
+:KK_Rotenon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Rotenon" .
+:KK_Rotundaflavon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Rotundaflavon" .
+:KK_Rubranin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Rubranin" .
+:KK_Rumerin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Rumerin" .
+:KK_Rutin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Rutin" .
+:KK_Sakuranetin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sakuranetin" .
+:KK_Samokuasin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Samokuasin A" .
+:KK_Sansoakamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sansoakamin" .
+:KK_Santonin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Santonin" .
+:KK_Santosiletin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Santosiletin" .
+:KK_Saponin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Saponin" .
+:KK_Sebiferine rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sebiferine" .
+:KK_Serat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Serat" .
+:KK_Seskuiterpen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Seskuiterpen" .
+:KK_Sianida_monoglikodisa rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sianida monoglikodisa" .
+:KK_Sianidol_3_glukosida rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sianidol-3-glukosida" .
+:KK_Sianidol_3_rhamnoglukosida rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sianidol-3-rhamnoglukosida" .
+:KK_Sikloartan rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sikloartan" .
+:KK_Sikloartenol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sikloartenol" .
+:KK_Sikloskamosin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sikloskamosin" .
+:KK_Sinamaldehid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinamaldehid" .
+:KK_Sinamil_asetat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinamil asetat" .
+:KK_Sinkofilamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinkofilamin" .
+:KK_Sinkofilin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinkofilin" .
+:KK_Sinkonamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinkonamin" .
+:KK_Sinkonanin_A_D_E_F_G rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinkonanin A/D/E/F/G" .
+:KK_Sinkonidin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinkonidin" .
+:KK_Sinkonidinon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinkonidinon" .
+:KK_Sinkonin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinkonin" .
+:KK_Sinkoninon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinkoninon" .
+:KK_Sinkonisinol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sinkonisinol" .
+:KK_Sitosterol_3_O_beta_D_glukopiranosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sitosterol-3-O-beta-D-glukopiranosid" .
+:KK_Sitral rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sitral" .
+:KK_Skopolamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Skopolamin" .
+:KK_Skuamosin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Skuamosin" .
+:KK_Skuamosinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Skuamosinin" .
+:KK_Skuamostatin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Skuamostatin" .
+:KK_Skuamtin_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Skuamtin A" .
+:KK_Spatulenol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Spatulenol" .
+:KK_Spirolakton rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Spirolakton" .
+:KK_Stefarin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Stefarin" .
+:KK_Steroid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Steroid" .
+:KK_Stigmast_4_en_3_on rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Stigmast-4-en-3-on" .
+:KK_Stigmast_4_en_6beta_ol_3_on rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Stigmast-4-en-6beta-ol-3-on" .
+:KK_Stigmast_4_ene_3_6_dion rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Stigmast-4-ene-3,6-dion" .
+:KK_Stigmasterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Stigmasterol" .
+:KK_Swainsonin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Swainsonin" .
+:KK_Tanin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Tanin" .
+:KK_Tarakserol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Tarakserol" .
+:KK_Tarakseron rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Tarakseron" .
+:KK_Tektokrisin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Tektokrisin" .
+:KK_Teobromin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Teobromin" .
+:KK_Terpenoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Terpenoid" .
+:KK_Terpinol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Terpinol" .
+:KK_Tiamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Tiamin" .
+:KK_Tiazol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Tiazol" .
+:KK_Tokoferol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Tokoferol" .
+:KK_Triakontan rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Triakontan" .
+:KK_Trigonelin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Trigonelin" .
+:KK_Triterpen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Triterpen" .
+:KK_Triterpenoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Triterpenoid" .
+:KK_Umbelatin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Umbelatin" .
+:KK_Uvangoletin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Uvangoletin" .
+:KK_Vetiverol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Vetiverol" .
+:KK_Violaksantin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Violaksantin" .
+:KK_Vitamin_C rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Vitamin C" .
+:KK_Xanton rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Xanton" .
+:KK_Zat_besi rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Zat besi" .
+:KK_alfa_pinen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "alfa-pinen" .
+:KK_alfa_terpinen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "alfa-terpinen" .
+:KK_alfa_tujon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "alfa-tujon" .
+:KK_alfa_vetivon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "alfa-vetivon" .
+:KK_beta_karoten rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "beta-karoten" .
+:KK_beta_karyofilen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "beta-karyofilen" .
+:KK_beta_pinen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "beta-pinen" .
+:KK_beta_sitosteril_3_O_beta_D_glukosida rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "beta-sitosteril-3-O-beta-D-glukosida" .
+:KK_beta_sitosterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "beta-sitosterol" .
+:KK_beta_tujon rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "beta-tujon" .
+:KK_beta_vetivone rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "beta-vetivone" .
+:KK_epi_3_kuinamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "epi-3-kuinamin" .
+:KK_g_karen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "g-karen" .
+:KK_gamma_muurolen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "gamma-muurolen" .
+:KK_n_nonakosan rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "n-nonakosan" .
+:KK_p_asam_kumarat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "p-asam kumarat" .
+:KK_p_asam_metoksinamat rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "p-asam metoksinamat" .
+:KK_p_metilanisol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "p-metilanisol" .
+:KK_p_simen rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "p-simen" .
+:KK_threo_eritro_1_C_siringilgliserol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "threo-eritro-1-C-siringilgliserol" .
+
+# Kandungan kimia tambahan dari empat monografi terakhir ETOI (2018)
+:KK_Glomeratid_A_D rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Glomeratid A-D" .
+:KK_Arilanin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Arilanin" .
+:KK_Portulakanon_B_D rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Portulakanon B-D" .
+:KK_Kaemferol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kaemferol" .
+:KK_Myrisetin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Myrisetin" .
+:KK_Luteolin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Luteolin" .
+:KK_Genistein rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Genistein" .
+:KK_Genistin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Genistin" .
+:KK_Dopa rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Dopa" .
+:KK_Dopamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Dopamin" .
+:KK_Noradrenalin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Noradrenalin" .
+:KK_Olerasein_A_D rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Olerasein A-D" .
+:KK_Polisakarida rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Polisakarida" .
+:KK_Terpenoid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Terpenoid" .
+:KK_Portulosid_A_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Portulosid A dan B" .
+:KK_Sterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sterol" .
+:KK_beta_Karoten rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Beta-karoten" .
+:KK_Glutation rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Glutation" .
+:KK_Melatonin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Melatonin" .
+:KK_Portulaserebrosid_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Portulaserebrosid A" .
+:KK_Katekol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Katekol" .
+:KK_Bergapten rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Bergapten" .
+:KK_Urasil rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Urasil" .
+:KK_Adenin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Adenin" .
+:KK_Indol_3_karboksaldehid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Indol-3-karboksaldehid" .
+:KK_Darendosid_B rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Darendosid B" .
+:KK_Verbaskosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Verbaskosid" .
+:KK_Isoverbaskosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Isoverbaskosid" .
+:KK_Martynosid rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Martynosid" .
+:KK_Leukoseptosid_A rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Leukoseptosid A" .
+:KK_Jionosid_D rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Jionosid D" .
+:KK_Fitosterol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Fitosterol" .
+:KK_Oleoresin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Oleoresin" .
+:KK_Alkaloid_indol rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Alkaloid indol" .
+:KK_Ajmalidin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Ajmalidin" .
+:KK_Ajmalin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Ajmalin" .
+:KK_Ajmalinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Ajmalinin" .
+:KK_Ajmalikin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Ajmalikin" .
+:KK_Arikin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Arikin" .
+:KK_Kaneskin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Kaneskin" .
+:KK_Korianthin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Korianthin" .
+:KK_Deserpidin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Deserpidin" .
+:KK_Isoajmalin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Isoajmalin" .
+:KK_Isoserin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Isoserin" .
+:KK_Isoserpilin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Isoserpilin" .
+:KK_Lankaneskin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Lankaneskin" .
+:KK_Neoajmalin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Neoajmalin" .
+:KK_Papaverin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Papaverin" .
+:KK_Raubasin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Raubasin" .
+:KK_Raucaffricine rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Raucaffricine" .
+:KK_Rauhimbin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Rauhimbin" .
+:KK_Rauwolfinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Rauwolfinin" .
+:KK_Recanescine rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Recanescine" .
+:KK_Resinamin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Resinamin" .
+:KK_Reserpilin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Reserpilin" .
+:KK_Reserpin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Reserpin" .
+:KK_Reserpinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Reserpinin" .
+:KK_Sarpagin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Sarpagin" .
+:KK_Serpentin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Serpentin" .
+:KK_Serpentinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Serpentinin" .
+:KK_Tebain rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Tebain" .
+:KK_Yohimbin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Yohimbin" .
+:KK_Yohimbinin rdf:type owl:NamedIndividual , :Kandungan_Kimia ; rdfs:label "Yohimbinin" .
+
+#======================================================================
+# KHASIAT INSTANCES
+#======================================================================
+
+:KH_Antioksidan rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Antioksidan" .
+:KH_Asma rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Asma" .
+:KH_Bahan_kosmetik_dan_parfum rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Bahan kosmetik dan parfum" ; skos:altLabel "Bahan baku kosmetika" ; skos:altLabel "Bahan kosmetik" ; skos:altLabel "Bahan parfum" ; skos:altLabel "Bahan parfum dan kosmetika" .
+:KH_Batuk rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Batuk" .
+:KH_Batuk_darah rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Batuk darah" .
+:KH_Bau_badan rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Bau badan" ; skos:altLabel "Mengatasi bau badan" .
+:KH_Bengkak rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Bengkak" .
+:KH_Bisul rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Bisul" .
+:KH_Demam rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Demam" ; skos:altLabel "Penurun panas" .
+:KH_Demam_tifoid rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Demam tifoid" ; skos:altLabel "Tipus" .
+:KH_Diabetes rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Diabetes" ; skos:altLabel "Kencing manis" .
+:KH_Diare rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Diare" ; skos:altLabel "Mencret" .
+:KH_Disentri rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Disentri" .
+:KH_Eksim rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Eksim" .
+:KH_Gangguan_pencernaan rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Gangguan pencernaan" ; skos:altLabel "Obat lemah lambung" ; skos:altLabel "Radang lambung" ; skos:altLabel "Tukak lambung" .
+:KH_Gelisah rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Gelisah" .
+:KH_Hipertensi rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Hipertensi" ; skos:altLabel "Tekanan darah tinggi" .
+:KH_Infeksi_saluran_kencing rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Infeksi saluran kencing" .
+:KH_Influenza rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Influenza" .
+:KH_Kecacingan rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Kecacingan" .
+:KH_Kejang rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Kejang" .
+:KH_Kembung rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Kembung" ; skos:altLabel "Perut kembung" .
+:KH_Kencing_batu rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Kencing batu" .
+:KH_Kencing_darah rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Kencing darah" .
+:KH_Keputihan rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Keputihan" .
+:KH_Lemah_saraf rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Lemah saraf" .
+:KH_Luka rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Luka" ; skos:altLabel "Luka baru" ; skos:altLabel "Luka terbuka" .
+:KH_Luka_bakar rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Luka bakar" .
+:KH_Luka_bekas_gigitan_kalajengking rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Luka bekas gigitan kalajengking" .
+:KH_Malaria rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Malaria" .
+:KH_Masuk_angin rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Masuk angin" .
+:KH_Memperbanyak_air_susu_ibu rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Memperbanyak air susu ibu" ; skos:altLabel "Pelancar air susu ibu" .
+:KH_Memperkuat_stamina rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Memperkuat stamina" .
+:KH_Menurunkan_kolesterol rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Menurunkan kolesterol" .
+:KH_Mual rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Mual" .
+:KH_Nyeri_haid rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Nyeri haid" .
+:KH_Nyeri_tulang_punggung rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Nyeri tulang punggung" .
+:KH_Pegal_linu rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Pegal linu" .
+:KH_Pelangsing rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Pelangsing" .
+:KH_Peluruh_air_seni rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Peluruh air seni" .
+:KH_Peluruh_keringat rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Peluruh keringat" .
+:KH_Pembersih_darah rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Pembersih darah" ; skos:altLabel "Pembersih darah setelah melahirkan" .
+:KH_Penambah_nafsu_makan rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Penambah nafsu makan" .
+:KH_Pencegah_kanker rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Pencegah kanker" .
+:KH_Penghilang_bau_mulut rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Penghilang bau mulut" .
+:KH_Penghilang_rasa_sakit rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Penghilang rasa sakit" .
+:KH_Pengusir_serangga rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Pengusir serangga" ; skos:altLabel "Insektisida alami" ; skos:altLabel "Mencegah serangan serangga" ; skos:altLabel "Mengusir serangga" .
+:KH_Penyakit_jantung rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Penyakit jantung" .
+:KH_Penyakit_kulit rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Penyakit kulit" ; skos:altLabel "Sakit kulit" .
+:KH_Penyegar_tubuh rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Penyegar tubuh" ; skos:altLabel "Penyegar badan" .
+:KH_Radang_amandel rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Radang amandel" .
+:KH_Rematik rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Rematik" .
+:KH_Sakit_borok_pada_hewan_ternak rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Sakit borok pada hewan ternak" .
+:KH_Sakit_kepala rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Sakit kepala" ; skos:altLabel "Kepala pusing" .
+:KH_Sakit_perut rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Sakit perut" .
+:KH_Sariawan rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Sariawan" .
+:KH_Sembelit rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Sembelit" .
+:KH_Sesak_nafas rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Sesak nafas" .
+:KH_Sukar_tidur rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Sukar tidur" .
+:KH_TBC rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "TBC" .
+:KH_TBC_kelenjar rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "TBC kelenjar" .
+:KH_Urus_urus rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Urus-urus" .
+:KH_Wasir rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Wasir" .
+:KH_Borok rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Borok" .
+:KH_Kolera rdf:type owl:NamedIndividual , :Khasiat ; rdfs:label "Kolera" .
+
+#======================================================================
+# TANAMAN OBAT INSTANCES (48 tanaman)
+#======================================================================
+
+### Sirsak (Annona muricata L.)
+:Sirsak rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Sirsak" ;
+    :namaIndonesia "Sirsak" ;
+    :namaLatin "Annona muricata L." ;
+    :namaAsing "Soursop" ;
+    :memilikiTakson :T_Annona ;
+    :memilikiHabitus :H_Perdu ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur_terbalik ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Mengkilat ;
+    :memilikiPermukaanDaun :PM_Kasar ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Sirsak_Daun ;
+    :memilikiBagian :Sirsak_Akar ;
+    :memilikiBagian :Sirsak_Kulit_Batang ;
+    :memilikiBagian :Sirsak_Buah ;
+    :memilikiBagian :Sirsak_Biji .
+
+:Sirsak_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Sirsak - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Asetogenin ;
+    :memilikiKandungan :KK_Anomurisin_A ;
+    :memilikiKandungan :KK_Anomurisin_B ;
+    :memilikiKandungan :KK_Gigantetrosin_A ;
+    :memilikiKandungan :KK_Anonasin_10_on ;
+    :memilikiKandungan :KK_Murikatetrosin_A ;
+    :memilikiKandungan :KK_Murikatetrosin_B ;
+    :memilikiKandungan :KK_Anonasin ;
+    :memilikiKandungan :KK_Goniotalamisin ;
+    :memilikiKandungan :KK_Retikulin ;
+    :memilikiKandungan :KK_Koklaurin ;
+    :memilikiKandungan :KK_Koreksimin ;
+    :memilikiKandungan :KK_Aterosperminin ;
+    :memilikiKandungan :KK_Stefarin ;
+    :memilikiKandungan :KK_Anomurin ;
+    :mengobati :KH_Bisul ;
+    :mengobati :KH_Kejang ;
+    :mengobati :KH_Peluruh_keringat .
+
+:Sirsak_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Sirsak - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Retikulin ;
+    :memilikiKandungan :KK_Koklaurin ;
+    :memilikiKandungan :KK_Koreksimin ;
+    :memilikiKandungan :KK_Aterosperminin ;
+    :memilikiKandungan :KK_Stefarin ;
+    :memilikiKandungan :KK_Anomurin ;
+    :memilikiKandungan :KK_Anomurisin ;
+    :mengobati :KH_Sembelit ;
+    :mengobati :KH_Diare ;
+    :mengobati :KH_Nyeri_tulang_punggung .
+
+:Sirsak_Kulit_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Sirsak - Kulit Batang" ;
+    :jenisBagian :BG_Kulit_Batang ;
+    :memilikiKandungan :KK_Retikulin ;
+    :memilikiKandungan :KK_Koklaurin ;
+    :memilikiKandungan :KK_Koreksimin ;
+    :memilikiKandungan :KK_Aterosperminin ;
+    :memilikiKandungan :KK_Stefarin ;
+    :memilikiKandungan :KK_Anomurin ;
+    :memilikiKandungan :KK_Anomurisin ;
+    :mengobati :KH_Diare .
+
+:Sirsak_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Sirsak - Buah" ;
+    :jenisBagian :BG_Buah ;
+    :mengobati :KH_Diare .
+
+:Sirsak_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Sirsak - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :mengobati :KH_Kecacingan .
+
+### Srikaya (Annona squamosa L.)
+:Srikaya rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Srikaya" ;
+    :namaIndonesia "Srikaya" ;
+    :namaLatin "Annona squamosa L." ;
+    :namaAsing "Sugar apple" ;
+    :memilikiTakson :T_Annona ;
+    :memilikiHabitus :H_Perdu ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Licin ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiBagian :Srikaya_Daun ;
+    :memilikiBagian :Srikaya_Batang ;
+    :memilikiBagian :Srikaya_Kulit_Batang ;
+    :memilikiBagian :Srikaya_Biji ;
+    :memilikiBagian :Srikaya_Akar ;
+    :memilikiBagian :Srikaya_Buah ;
+    :farmakologi "Ekstrak etanol biji terhadap Shigella dysenteriae, konsentrasi 15% menghambat 6,9 mm (Rianto dkk., 2015). Ekstrak metanol kulit batang 50 mg/kg BB p.o menurunkan udema tikus (Singh dkk., 2014)." .
+
+:Srikaya_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Srikaya - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Anonain ;
+    :memilikiKandungan :KK_Aporfin ;
+    :memilikiKandungan :KK_Koridin ;
+    :memilikiKandungan :KK_Isokoridin ;
+    :memilikiKandungan :KK_Norkoridin ;
+    :memilikiKandungan :KK_Norisokoridin ;
+    :memilikiKandungan :KK_Glausin ;
+    :memilikiKandungan :KK_Norlaurelin ;
+    :memilikiKandungan :KK_Rumerin .
+
+:Srikaya_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Srikaya - Batang" ;
+    :jenisBagian :BG_Batang ;
+    :memilikiKandungan :KK_Anonain ;
+    :memilikiKandungan :KK_Aporfin ;
+    :memilikiKandungan :KK_Koridin ;
+    :memilikiKandungan :KK_Isokoridin ;
+    :memilikiKandungan :KK_Norkoridin ;
+    :memilikiKandungan :KK_Norisokoridin ;
+    :memilikiKandungan :KK_Glausin ;
+    :memilikiKandungan :KK_Norlaurelin ;
+    :memilikiKandungan :KK_Rumerin .
+
+:Srikaya_Kulit_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Srikaya - Kulit Batang" ;
+    :jenisBagian :BG_Kulit_Batang ;
+    :memilikiKandungan :KK_Bulatasin ;
+    :memilikiKandungan :KK_Bulatasinon ;
+    :mengobati :KH_Diare ;
+    :istilahBuku "Mencret" ;
+    :mengobati :KH_Bisul .
+
+:Srikaya_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Srikaya - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Samokuasin_A ;
+    :memilikiKandungan :KK_Sikloskamosin ;
+    :memilikiKandungan :KK_Skuamtin_A ;
+    :memilikiKandungan :KK_Anoskuamosin_A ;
+    :memilikiKandungan :KK_Anonasin ;
+    :memilikiKandungan :KK_Anonatatin ;
+    :memilikiKandungan :KK_Skuamosin ;
+    :memilikiKandungan :KK_Skuamostatin ;
+    :memilikiKandungan :KK_Anonin ;
+    :memilikiKandungan :KK_Skuamosinin ;
+    :memilikiKandungan :KK_Anotemoyin ;
+    :mengobati :KH_Kecacingan .
+
+:Srikaya_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Srikaya - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Anolobin ;
+    :memilikiKandungan :KK_Liriodenin ;
+    :memilikiKandungan :KK_Norushinsunin ;
+    :memilikiKandungan :KK_Retikulin .
+
+:Srikaya_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Srikaya - Buah" ;
+    :jenisBagian :BG_Buah ;
+    :mengobati :KH_Kecacingan .
+
+### Mungsi Arab (Artemisia cina Berg. ex Poljakov)
+:Mungsi_Arab rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Mungsi Arab" ;
+    :namaIndonesia "Mungsi Arab" ;
+    :namaLatin "Artemisia cina Berg. ex Poljakov" ;
+    :namaAsing "Santonica" ;
+    :memilikiTakson :T_Artemisia ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Berlekuk ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiWarnaDaun :WD_Putih_kehijauan ;
+    :memilikiBagian :Mungsi_Arab_Herba ;
+    :memilikiBagian :Mungsi_Arab_Daun ;
+    :farmakologi "Ekstrak air herba dosis 2 g/40 kg BB p.o pada sapi terinfeksi Moniezia expansa menunjukkan aktivitas antelmintik (Bashtar dkk., 2011)." .
+
+:Mungsi_Arab_Herba rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Mungsi Arab - Herba" ;
+    :jenisBagian :BG_Herba ;
+    :memilikiKandungan :KK_Santonin ;
+    :memilikiKandungan :KK_Terpinol ;
+    :memilikiKandungan :KK_p_simen ;
+    :memilikiKandungan :KK_alfa_tujon ;
+    :memilikiKandungan :KK_beta_tujon ;
+    :memilikiKandungan :KK_Borneol ;
+    :memilikiKandungan :KK_alfa_terpinen ;
+    :memilikiKandungan :KK_alfa_pinen ;
+    :memilikiKandungan :KK_beta_pinen ;
+    :memilikiKandungan :KK_Betain ;
+    :memilikiKandungan :KK_Kolin ;
+    :memilikiKandungan :KK_Tanin ;
+    :mengobati :KH_Kecacingan ;
+    :mengobati :KH_Penghilang_rasa_sakit ;
+    :mengobati :KH_Rematik .
+
+:Mungsi_Arab_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Mungsi Arab - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :mengobati :KH_Kecacingan .
+
+### Belimbing Buah (Averrhoa carambola L.)
+:Belimbing_Buah rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Belimbing Buah" ;
+    :namaIndonesia "Belimbing Buah" ;
+    :namaLatin "Averrhoa carambola L." ;
+    :namaAsing "Star fruit" ;
+    :memilikiTakson :T_Averrhoa ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Majemuk ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Belimbing_Buah_Daun ;
+    :memilikiBagian :Belimbing_Buah_Buah ;
+    :memilikiBagian :Belimbing_Buah_Batang ;
+    :memilikiBagian :Belimbing_Buah_Akar ;
+    :farmakologi "Jus buah dosis 100% dan 50% sebanyak 200 mL pada 90 subyek menurunkan tekanan darah sistolik signifikan setelah 30 menit, tanpa penurunan signifikan pada diastolik (Wijaya dkk., 2012)." .
+
+:Belimbing_Buah_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Belimbing Buah - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :mengobati :KH_Sakit_kepala ;
+    :istilahBuku "Kepala pusing" .
+
+:Belimbing_Buah_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Belimbing Buah - Buah" ;
+    :jenisBagian :BG_Buah ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Proantosianidin ;
+    :memilikiKandungan :KK_Epikatekin ;
+    :memilikiKandungan :KK_Asam_galat ;
+    :memilikiKandungan :KK_Galotanin ;
+    :memilikiKandungan :KK_beta_sitosterol ;
+    :memilikiKandungan :KK_Kampesterol ;
+    :memilikiKandungan :KK_Lupeol ;
+    :memilikiKandungan :KK_Isofukosterol ;
+    :memilikiKandungan :KK_Apigenin_6_C_beta_L_fukopiranosid ;
+    :memilikiKandungan :KK_Karambolaflavon ;
+    :memilikiKandungan :KK_Asam_oksalat ;
+    :mengobati :KH_Batuk ;
+    :mengobati :KH_Hipertensi ;
+    :istilahBuku "Tekanan darah tinggi" .
+
+:Belimbing_Buah_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Belimbing Buah - Batang" ;
+    :jenisBagian :BG_Batang ;
+    :memilikiKandungan :KK_Anisaldehid ;
+    :memilikiKandungan :KK_5_hidroksimetil_2_furfural ;
+    :memilikiKandungan :KK_Asam_galat .
+
+:Belimbing_Buah_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Belimbing Buah - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Benzil_1_O_beta_D_glukopiranosid ;
+    :memilikiKandungan :KK_5_metoksiisolarikiresinol_3alfa_O_beta_D_glukopiranosid .
+
+### Kayu Ni (Berberis nepalensis Spreng.)
+:Kayu_Ni rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kayu Ni" ;
+    :namaIndonesia "Kayu Ni" ;
+    :namaLatin "Berberis nepalensis Spreng." ;
+    :namaAsing "Chinese mahonia" ;
+    :memilikiTakson :T_Berberis ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Majemuk ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Berombak ;
+    :memilikiTepiDaun :TD_Berduri ;
+    :memilikiTulangDaun :TL_Menjari ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Terpancung ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Kayu_Ni_Daun ;
+    :memilikiBagian :Kayu_Ni_Batang ;
+    :farmakologi "Ekstrak metanol batang konsentrasi 30 ug/mL memberi zona hambat 18 mm terhadap Staphylococcus aureus, setara asam nalidiksat 30 ug/mL (Thusa dan Mulmi, 2017)." .
+
+:Kayu_Ni_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kayu Ni - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Umbelatin ;
+    :memilikiKandungan :KK_Neprotin ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Kuinon ;
+    :memilikiKandungan :KK_Glikosida ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Terpenoid .
+
+:Kayu_Ni_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kayu Ni - Batang" ;
+    :jenisBagian :BG_Batang ;
+    :memilikiKandungan :KK_Umbelatin ;
+    :memilikiKandungan :KK_Neprotin ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Kuinon ;
+    :memilikiKandungan :KK_Glikosida ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Terpenoid ;
+    :mengobati :KH_Demam ;
+    :istilahBuku "Penurun panas" .
+
+### Temu Kunci (Boesenbergia rotunda (L.) Mansf.)
+:Temu_Kunci rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Temu Kunci" ;
+    :namaIndonesia "Temu Kunci" ;
+    :namaLatin "Boesenbergia rotunda (L.) Mansf." ;
+    :namaAsing "Chinese keys" ;
+    :memilikiTakson :T_Boesenbergia ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Temu_Kunci_Rimpang ;
+    :memilikiBagian :Temu_Kunci_Daun ;
+    :farmakologi "Ekstrak etanol rimpang dosis 200 mg/kg BB p.o selama 8 minggu pada mencit berpakan tinggi lemak menurunkan berat badan dan ketebalan massa lemak, serta menghambat kenaikan kolesterol total, LDL, dan trigliserida serum (Kim dkk., 2012)." .
+
+:Temu_Kunci_Rimpang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Temu Kunci - Rimpang" ;
+    :jenisBagian :BG_Rimpang ;
+    :memilikiKandungan :KK_Kardamonin ;
+    :memilikiKandungan :KK_Pinocembrin ;
+    :memilikiKandungan :KK_Helikrisetin ;
+    :memilikiKandungan :KK_2_6_dihidroksi_4_metoksikalkon ;
+    :memilikiKandungan :KK_Flavokawain ;
+    :memilikiKandungan :KK_2_4_6_trihidroksikalkon ;
+    :memilikiKandungan :KK_Uvangoletin ;
+    :memilikiKandungan :KK_Boesenbergin_A_B ;
+    :memilikiKandungan :KK_panduratin_A ;
+    :memilikiKandungan :KK_Rubranin ;
+    :memilikiKandungan :KK_Flavanon ;
+    :memilikiKandungan :KK_Pinostrobin ;
+    :memilikiKandungan :KK_Pinosembrin ;
+    :memilikiKandungan :KK_5_7_dimetoksiflavanon ;
+    :memilikiKandungan :KK_Alpinetin ;
+    :memilikiKandungan :KK_Sakuranetin ;
+    :memilikiKandungan :KK_7_4_dihidroksi_5_metoksiflavanon ;
+    :memilikiKandungan :KK_Rotundaflavon ;
+    :memilikiKandungan :KK_Tektokrisin ;
+    :mengobati :KH_Memperbanyak_air_susu_ibu ;
+    :mengobati :KH_Penyegar_tubuh ;
+    :mengobati :KH_Pelangsing .
+
+:Temu_Kunci_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Temu Kunci - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :mengobati :KH_Sariawan .
+
+### Kecubung (Brugmansia x candida Pers.)
+:Kecubung rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kecubung" ;
+    :namaIndonesia "Kecubung" ;
+    :namaLatin "Brugmansia x candida Pers." ;
+    :namaAsing "Angel's trumpet" ;
+    :memilikiTakson :T_Brugmansia ;
+    :memilikiHabitus :H_Perdu ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Berlekuk ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Tidak_simetris ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Kecubung_Bunga ;
+    :memilikiBagian :Kecubung_Daun ;
+    :farmakologi "Ekstrak air bunga kecubung gunung dosis 25 mg/kg BB p.o memberi efek bronkodilator pada marmot yang diinduksi histamin dihidroklorida, setara salbutamol sulfat 0,16 mg/kg BB (Anisa dkk., 2016)." .
+
+:Kecubung_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kecubung - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :memilikiKandungan :KK_Asam_askorbat ;
+    :memilikiKandungan :KK_Atropin ;
+    :memilikiKandungan :KK_Skopolamin ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :mengobati :KH_Sesak_nafas ;
+    :mengobati :KH_Nyeri_haid ;
+    :mengobati :KH_Sakit_perut .
+
+:Kecubung_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kecubung - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Asam_askorbat ;
+    :memilikiKandungan :KK_Atropin ;
+    :memilikiKandungan :KK_Skopolamin .
+
+### Nyamplung (Calophyllum inophyllum L.)
+:Nyamplung rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Nyamplung" ;
+    :namaIndonesia "Nyamplung" ;
+    :namaLatin "Calophyllum inophyllum L." ;
+    :namaAsing "Alexandrian laurel" ;
+    :memilikiTakson :T_Calophyllum ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiBentukDaun :BD_Bulat_telur_terbalik ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiUjungDaun :UD_Membulat ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Mengkilat ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Nyamplung_Daun ;
+    :memilikiBagian :Nyamplung_Biji ;
+    :memilikiBagian :Nyamplung_Buah ;
+    :farmakologi "Ekstrak etanol biji 250 mg/kg BB p.o menurunkan volume udema tikus sebesar 36,36% dibanding kontrol pada model Freund's complete adjuvant (Perumal dkk., 2017)." .
+
+:Nyamplung_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Nyamplung - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Tanin ;
+    :mengobati :KH_Rematik .
+
+:Nyamplung_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Nyamplung - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Kumarin ;
+    :memilikiKandungan :KK_Xanton ;
+    :memilikiKandungan :KK_Terpenoid ;
+    :mengobati :KH_Urus_urus .
+
+:Nyamplung_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Nyamplung - Buah" ;
+    :jenisBagian :BG_Buah ;
+    :memilikiKandungan :KK_Inofilum_A ;
+    :memilikiKandungan :KK_Inofilum_C ;
+    :memilikiKandungan :KK_Inofilum_E ;
+    :memilikiKandungan :KK_Kalofiloid ;
+    :memilikiKandungan :KK_Asam_kalofinat ;
+    :memilikiKandungan :KK_11_12_anhidroinofilum_A ;
+    :memilikiKandungan :KK_1_7_dihidroksi_6_metoksixanton ;
+    :memilikiKandungan :KK_Asam_galat ;
+    :memilikiKandungan :KK_n_nonakosan ;
+    :memilikiKandungan :KK_beta_sitosterol ;
+    :memilikiKandungan :KK_Sitosterol_3_O_beta_D_glukopiranosid .
+
+### Kenanga (Cananga odorata (Lam.) Hook.f. & Thomson)
+:Kenanga rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kenanga" ;
+    :namaIndonesia "Kenanga" ;
+    :namaLatin "Cananga odorata (Lam.) Hook.f. & Thomson" ;
+    :namaAsing "Perfume tree" ;
+    :memilikiTakson :T_Cananga ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Berombak ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiPangkalDaun :PK_Berlekuk ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Kenanga_Daun ;
+    :memilikiBagian :Kenanga_Batang ;
+    :memilikiBagian :Kenanga_Bunga ;
+    :memilikiBagian :Kenanga_Biji ;
+    :farmakologi "Ekstrak etanol buah dosis 400 mg/kg BB p.o menurunkan respon nyeri 65,1% pada mencit (Maniyar dan Devi, 2015). Ekstrak etanol buah 100 mg/kg BB p.o menghambat udema kaki tikus 62,9% (Maniyar dan Devi, 2017)." .
+
+:Kenanga_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kenanga - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Isosifonodin ;
+    :memilikiKandungan :KK_Spirolakton ;
+    :memilikiKandungan :KK_Kanangon ;
+    :memilikiKandungan :KK_Kanangaionosid .
+
+:Kenanga_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kenanga - Batang" ;
+    :jenisBagian :BG_Batang ;
+    :memilikiKandungan :KK_Isosifonodin ;
+    :memilikiKandungan :KK_Spirolakton ;
+    :memilikiKandungan :KK_Kanangon ;
+    :memilikiKandungan :KK_Kanangaionosid .
+
+:Kenanga_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kenanga - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :memilikiKandungan :KK_Kanangalignan ;
+    :memilikiKandungan :KK_Kanangaterpen ;
+    :memilikiKandungan :KK_p_metilanisol ;
+    :memilikiKandungan :KK_Metil_benzoat ;
+    :memilikiKandungan :KK_Benzil_benzoat ;
+    :memilikiKandungan :KK_Benzil_asetat ;
+    :memilikiKandungan :KK_Geranil_asetat ;
+    :memilikiKandungan :KK_Sinamil_asetat ;
+    :memilikiKandungan :KK_E_E_farnesil_asetat ;
+    :memilikiKandungan :KK_Linalool ;
+    :memilikiKandungan :KK_Geraniol ;
+    :memilikiKandungan :KK_Benzil_salisilat ;
+    :memilikiKandungan :KK_Germakren_D ;
+    :memilikiKandungan :KK_beta_karyofilen ;
+    :memilikiKandungan :KK_gamma_muurolen ;
+    :mengobati :KH_Nyeri_haid ;
+    :mengobati :KH_Bahan_kosmetik_dan_parfum ;
+    :istilahBuku "Bahan parfum dan kosmetika" .
+
+:Kenanga_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kenanga - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Alkaloid_kuinolon ;
+    :memilikiKandungan :KK_Fitosterol ;
+    :memilikiKandungan :KK_Fenilpropanoid .
+
+### Ganyong (Canna indica L.)
+:Ganyong rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Ganyong" ;
+    :namaIndonesia "Ganyong" ;
+    :namaLatin "Canna indica L." ;
+    :namaAsing "Indian shot" ;
+    :memilikiTakson :T_Canna ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_memanjang ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Ungu ;
+    :memilikiBagian :Ganyong_Bunga ;
+    :memilikiBagian :Ganyong_Rimpang ;
+    :memilikiBagian :Ganyong_Umbi ;
+    :farmakologi "Suspensi pati rimpang dosis 250, 500, 1000 mg/kg BB p.o menurunkan indeks ulkus dan meningkatkan rasio gastroprotektif 12,5%, 50%, 75% pada tikus (Najini dkk., 2018)." .
+
+:Ganyong_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Ganyong - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Kalsium ;
+    :memilikiKandungan :KK_Garam_fosfat ;
+    :memilikiKandungan :KK_Zat_besi ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Kuersetin ;
+    :memilikiKandungan :KK_Likopen ;
+    :memilikiKandungan :KK_Antosianin .
+
+:Ganyong_Rimpang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Ganyong - Rimpang" ;
+    :jenisBagian :BG_Rimpang ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Kalsium ;
+    :memilikiKandungan :KK_Garam_fosfat ;
+    :memilikiKandungan :KK_Zat_besi ;
+    :mengobati :KH_Gangguan_pencernaan ;
+    :istilahBuku "Tukak lambung" .
+
+:Ganyong_Umbi rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Ganyong - Umbi" ;
+    :jenisBagian :BG_Umbi ;
+    :memilikiKandungan :KK_Asam_kafeat ;
+    :memilikiKandungan :KK_Asam_rosmarinat ;
+    :memilikiKandungan :KK_Asam_cefeoil_4_hidroksifenilaktat ;
+    :memilikiKandungan :KK_Asam_salvianolat ;
+    :memilikiKandungan :KK_3_O_asetil_alfa_D_glukopiranosid ;
+    :memilikiKandungan :KK_3_6_di_O_p_kumaroil_beta_D_fruktofuranosil_6_O_asetil_alfa_D_glukopiranosid .
+
+### Akar Wangi (Chrysopogon zizanioides (L.) Roberty)
+:Akar_Wangi rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Akar Wangi" ;
+    :namaIndonesia "Akar Wangi" ;
+    :namaLatin "Chrysopogon zizanioides (L.) Roberty" ;
+    :namaAsing "Vetiver" ;
+    :memilikiTakson :T_Chrysopogon ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Memanjang ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Sejajar ;
+    :memilikiPermukaanDaun :PM_Kasap ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Akar_Wangi_Daun ;
+    :memilikiBagian :Akar_Wangi_Akar ;
+    :farmakologi "Ekstrak etanol akar dosis 50, 100, 200 mg/kg BB p.o menurunkan respon nyeri 66%, 80%, 87% pada tikus. Pada uji antiinflamasi, menghambat udema 65%, 76%, 87% (Elizabeth dkk., 2012)." .
+
+:Akar_Wangi_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Akar Wangi - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Fenol ;
+    :memilikiKandungan :KK_Terpenoid ;
+    :memilikiKandungan :KK_Saponin .
+
+:Akar_Wangi_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Akar Wangi - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Kadenen ;
+    :memilikiKandungan :KK_Kloven ;
+    :memilikiKandungan :KK_Amorfin ;
+    :memilikiKandungan :KK_Aromadendrin ;
+    :memilikiKandungan :KK_Junipen ;
+    :memilikiKandungan :KK_Vetiverol ;
+    :memilikiKandungan :KK_Kusinol ;
+    :memilikiKandungan :KK_Epiglobulol ;
+    :memilikiKandungan :KK_Spatulenol ;
+    :memilikiKandungan :KK_Kusimol ;
+    :memilikiKandungan :KK_Kusol ;
+    :memilikiKandungan :KK_alfa_vetivon ;
+    :memilikiKandungan :KK_beta_vetivone ;
+    :memilikiKandungan :KK_Kusimon ;
+    :memilikiKandungan :KK_Asam_kusenat ;
+    :memilikiKandungan :KK_Kusinol_asetat ;
+    :mengobati :KH_Rematik ;
+    :mengobati :KH_Pengusir_serangga ;
+    :istilahBuku "Mencegah serangan serangga" ;
+    :mengobati :KH_Bahan_kosmetik_dan_parfum ;
+    :istilahBuku "Bahan baku kosmetika" .
+
+### Kina (Cinchona calisaya Wedd.)
+:Kina rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kina" ;
+    :namaIndonesia "Kina" ;
+    :namaLatin "Cinchona calisaya Wedd." ;
+    :namaAsing "Quinine" ;
+    :memilikiTakson :T_Cinchona ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur_terbalik ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiBagian :Kina_Daun ;
+    :memilikiBagian :Kina_Kulit_Batang ;
+    :farmakologi "Kulit batang kina mengandung kuinin yang dimanfaatkan sebagai obat anti malaria." .
+
+:Kina_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kina - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Sinkofilamin ;
+    :memilikiKandungan :KK_Kuinamin ;
+    :memilikiKandungan :KK_3_epikuinamin .
+
+:Kina_Kulit_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kina - Kulit Batang" ;
+    :jenisBagian :BG_Kulit_Batang ;
+    :memilikiKandungan :KK_Kuinin ;
+    :memilikiKandungan :KK_Kuinidin ;
+    :memilikiKandungan :KK_Sinkonidin ;
+    :memilikiKandungan :KK_Sinkonin ;
+    :memilikiKandungan :KK_Klorogenik ;
+    :memilikiKandungan :KK_Protokatekik ;
+    :memilikiKandungan :KK_p_asam_kumarat ;
+    :memilikiKandungan :KK_Epikatekin ;
+    :memilikiKandungan :KK_Asam_kuinovat ;
+    :memilikiKandungan :KK_Asam_sinkolat ;
+    :memilikiKandungan :KK_Asantosianosid ;
+    :memilikiKandungan :KK_Sianidol_3_glukosida ;
+    :memilikiKandungan :KK_Sianidol_3_rhamnoglukosida ;
+    :memilikiKandungan :KK_Kaempferol ;
+    :memilikiKandungan :KK_Kuersetin ;
+    :memilikiKandungan :KK_Avikularin ;
+    :memilikiKandungan :KK_Reinoutrin ;
+    :memilikiKandungan :KK_Delfinin ;
+    :memilikiKandungan :KK_Antrakinon ;
+    :mengobati :KH_Malaria ;
+    :mengobati :KH_Demam ;
+    :istilahBuku "Penurun panas" ;
+    :mengobati :KH_Penambah_nafsu_makan .
+
+### Kina Merah (Cinchona pubescens Vahl.)
+:Kina_Merah rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kina Merah" ;
+    :namaIndonesia "Kina Merah" ;
+    :namaLatin "Cinchona pubescens Vahl." ;
+    :namaAsing "Red cinchona" ;
+    :memilikiTakson :T_Cinchona ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiUjungDaun :UD_Membulat ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiWarnaDaun :WD_Merah ;
+    :memilikiBagian :Kina_Merah_Kulit_Batang ;
+    :farmakologi "Kulit batang mengandung kuinin yang digunakan sebagai obat anti malaria." .
+
+:Kina_Merah_Kulit_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kina Merah - Kulit Batang" ;
+    :jenisBagian :BG_Kulit_Batang ;
+    :memilikiKandungan :KK_Kuinin ;
+    :memilikiKandungan :KK_Sinkonanin_A_D_E_F_G ;
+    :memilikiKandungan :KK_Sinkoninon ;
+    :memilikiKandungan :KK_Remijinin ;
+    :memilikiKandungan :KK_Sinkonamin ;
+    :memilikiKandungan :KK_Kuinamin ;
+    :memilikiKandungan :KK_Liriodenin ;
+    :memilikiKandungan :KK_Sinkofilin ;
+    :memilikiKandungan :KK_Kuinidinon ;
+    :memilikiKandungan :KK_Kuininon ;
+    :memilikiKandungan :KK_Sinkonidinon ;
+    :memilikiKandungan :KK_Kuinidin ;
+    :memilikiKandungan :KK_Sinkonin ;
+    :memilikiKandungan :KK_Sinkonidin ;
+    :memilikiKandungan :KK_9_epikuinin ;
+    :memilikiKandungan :KK_9_epikuinidin ;
+    :memilikiKandungan :KK_Dihidrokuinin ;
+    :memilikiKandungan :KK_Dihidrokuinidin ;
+    :memilikiKandungan :KK_Kuinin_N_4_oksid ;
+    :memilikiKandungan :KK_Kuinidin_N_4_oksid ;
+    :memilikiKandungan :KK_10_metoksinkonamin ;
+    :memilikiKandungan :KK_Sinkonisinol ;
+    :memilikiKandungan :KK_epi_3_kuinamin ;
+    :memilikiKandungan :KK_Isosinkofilamin ;
+    :memilikiKandungan :KK_10_hidroksisandin ;
+    :mengobati :KH_Malaria ;
+    :mengobati :KH_Demam ;
+    :istilahBuku "Penurun panas" ;
+    :mengobati :KH_Penambah_nafsu_makan .
+
+### Tikusan (Clausena excavata Burm. F.)
+:Tikusan rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Tikusan" ;
+    :namaIndonesia "Tikusan" ;
+    :namaLatin "Clausena excavata Burm. F." ;
+    :namaAsing "Pink lime-berry" ;
+    :memilikiTakson :T_Clausena ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Majemuk ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Terpancung ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Tikusan_Daun ;
+    :memilikiBagian :Tikusan_Kulit_Batang ;
+    :memilikiBagian :Tikusan_Batang ;
+    :memilikiBagian :Tikusan_Akar ;
+    :farmakologi "Ekstrak metanol daun dosis 50, 100, 200 mg/mL menunjukkan penutupan luka 95,7%, 97,4%, 98,8% pada hari ke 15, lebih baik dari standar intrasite gel 95,0% dan kontrol gom akasia 78,9% (Albaayit dkk., 2015)." .
+
+:Tikusan_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tikusan - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Santosiletin ;
+    :memilikiKandungan :KK_Murayanin ;
+    :memilikiKandungan :KK_Klausin_D ;
+    :mengobati :KH_Luka ;
+    :istilahBuku "Luka baru" .
+
+:Tikusan_Kulit_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tikusan - Kulit Batang" ;
+    :jenisBagian :BG_Kulit_Batang ;
+    :memilikiKandungan :KK_Klausin_B ;
+    :memilikiKandungan :KK_Klausin_TY ;
+    :memilikiKandungan :KK_Mukonal .
+
+:Tikusan_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tikusan - Batang" ;
+    :jenisBagian :BG_Batang ;
+    :memilikiKandungan :KK_Sansoakamin .
+
+:Tikusan_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tikusan - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Klausenidin ;
+    :memilikiKandungan :KK_Nordentantin ;
+    :memilikiKandungan :KK_Klauserin ;
+    :memilikiKandungan :KK_Dentatin .
+
+### Jagung Jali (Coix lacryma-jobi L.)
+:Jagung_Jali rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Jagung Jali" ;
+    :namaIndonesia "Jagung Jali" ;
+    :namaLatin "Coix lacryma-jobi L." ;
+    :namaAsing "Job's tears" ;
+    :memilikiTakson :T_Coix ;
+    :memilikiHabitus :H_Perdu ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Memanjang ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Sejajar ;
+    :memilikiPermukaanDaun :PM_Kasap ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiPangkalDaun :PK_Berlekuk ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Jagung_Jali_Daun ;
+    :memilikiBagian :Jagung_Jali_Biji ;
+    :memilikiBagian :Jagung_Jali_Akar ;
+    :farmakologi "Ekstrak metanol biji dosis 10 dan 100 mg/kg BB p.o selama 10 hari menurunkan kadar plasma asam urat pada tikus hiperurisemi (Ormjai, 2015)." .
+
+:Jagung_Jali_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Jagung Jali - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Glikosida ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Fenol ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Steroid .
+
+:Jagung_Jali_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Jagung Jali - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Glikosida ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Fenol ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Eriodiktiol ;
+    :memilikiKandungan :KK_Ceramide ;
+    :memilikiKandungan :KK_Asam_kumarat ;
+    :mengobati :KH_Peluruh_air_seni .
+
+:Jagung_Jali_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Jagung Jali - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Adenosin ;
+    :memilikiKandungan :KK_4_ketopinoresinol ;
+    :memilikiKandungan :KK_threo_eritro_1_C_siringilgliserol ;
+    :memilikiKandungan :KK_2_6_dimetoksi_p_hidrokinon_1_O_beta_D_glukopiranosid ;
+    :mengobati :KH_Sakit_perut ;
+    :mengobati :KH_Kecacingan .
+
+### Kola (Cola acuminata (P.Beauv.) Schott & Endl.)
+:Kola rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kola" ;
+    :namaIndonesia "Kola" ;
+    :namaLatin "Cola acuminata (P.Beauv.) Schott & Endl." ;
+    :namaAsing "Cola nut" ;
+    :memilikiTakson :T_Cola ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPermukaanDaun :PM_Mengkilat ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Kola_Biji ;
+    :farmakologi "Kafein dalam biji kola merangsang aksi saraf pusat (Brunye dkk., 2010)." .
+
+:Kola_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kola - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Katekin ;
+    :memilikiKandungan :KK_Epikatekin ;
+    :memilikiKandungan :KK_Teobromin ;
+    :memilikiKandungan :KK_Kafein ;
+    :mengobati :KH_Sakit_kepala ;
+    :mengobati :KH_Memperkuat_stamina .
+
+### Kola Nitida (Cola nitida (Vent.) Schott & Endl.)
+:Kola_Nitida rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kola Nitida" ;
+    :namaIndonesia "Kola Nitida" ;
+    :namaLatin "Cola nitida (Vent.) Schott & Endl." ;
+    :namaAsing "Kola nut" ;
+    :memilikiTakson :T_Cola ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPermukaanDaun :PM_Mengkilat ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Kola_Nitida_Biji ;
+    :farmakologi "Ekstrak air biji dosis 8 mg/kg BB p.o selama 4 hari meningkatkan kadar testosteron pada tikus (Adisa dkk., 2010)." .
+
+:Kola_Nitida_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kola Nitida - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Katekin ;
+    :memilikiKandungan :KK_Epikatekin ;
+    :memilikiKandungan :KK_Teobromin ;
+    :memilikiKandungan :KK_Kafein ;
+    :mengobati :KH_Sakit_kepala ;
+    :mengobati :KH_Memperkuat_stamina .
+
+### Ceguk (Combretum indicum (L.) DeFilipps)
+:Ceguk rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Ceguk" ;
+    :namaIndonesia "Ceguk" ;
+    :namaLatin "Combretum indicum (L.) DeFilipps" ;
+    :namaAsing "Rangoon creeper" ;
+    :memilikiTakson :T_Combretum ;
+    :memilikiHabitus :H_Liana ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Ceguk_Daun ;
+    :memilikiBagian :Ceguk_Bunga ;
+    :memilikiBagian :Ceguk_Buah ;
+    :memilikiBagian :Ceguk_Biji ;
+    :farmakologi "Ekstrak etanol 70% daun menghambat perkembangan telur cacing Fasciola gigantica (Ardana dkk., 2017)." .
+
+:Ceguk_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Ceguk - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Trigonelin ;
+    :memilikiKandungan :KK_L_prolin ;
+    :memilikiKandungan :KK_L_asparagin ;
+    :memilikiKandungan :KK_Asam_kuiskualat .
+
+:Ceguk_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Ceguk - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :memilikiKandungan :KK_Sianida_monoglikodisa .
+
+:Ceguk_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Ceguk - Buah" ;
+    :jenisBagian :BG_Buah ;
+    :memilikiKandungan :KK_Trigonelin ;
+    :memilikiKandungan :KK_Elagitanin ;
+    :memilikiKandungan :KK_Kuiskualin_A ;
+    :memilikiKandungan :KK_Kuiskualin_B .
+
+:Ceguk_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Ceguk - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Miristik ;
+    :memilikiKandungan :KK_Asam_linoleat ;
+    :mengobati :KH_Kecacingan .
+
+### Kenikir (Cosmos caudatus Kunth.)
+:Kenikir rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kenikir" ;
+    :namaIndonesia "Kenikir" ;
+    :namaLatin "Cosmos caudatus Kunth." ;
+    :namaAsing "Wild cosmos" ;
+    :memilikiTakson :T_Cosmos ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Berlekuk ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Kenikir_Herba ;
+    :memilikiBagian :Kenikir_Daun ;
+    :memilikiBagian :Kenikir_Akar ;
+    :farmakologi "Ekstrak etanol daun dosis 200 mg/kg BB p.o selama 4 minggu menurunkan kadar trigliserida, kolesterol total, LDL-c, dan glukosa pada tikus (Perumal dkk., 2014)." .
+
+:Kenikir_Herba rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kenikir - Herba" ;
+    :jenisBagian :BG_Herba ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Mirisetin ;
+    :memilikiKandungan :KK_Lutein ;
+    :memilikiKandungan :KK_Rutin ;
+    :memilikiKandungan :KK_Naringenin ;
+    :memilikiKandungan :KK_Apigenin ;
+    :memilikiKandungan :KK_Kuersetin ;
+    :memilikiKandungan :KK_Katekin ;
+    :memilikiKandungan :KK_Epikatekin ;
+    :memilikiKandungan :KK_Kaempferol ;
+    :memilikiKandungan :KK_Asam_hidroksinamat ;
+    :memilikiKandungan :KK_Asam_klorogenat ;
+    :memilikiKandungan :KK_Asam_neoklorogenat ;
+    :memilikiKandungan :KK_Asam_kriptoklorogenat ;
+    :memilikiKandungan :KK_Asam_kafeat ;
+    :memilikiKandungan :KK_Asam_ferulat ;
+    :memilikiKandungan :KK_Minyak_atsiri .
+
+:Kenikir_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kenikir - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :mengobati :KH_Penambah_nafsu_makan ;
+    :mengobati :KH_Gangguan_pencernaan ;
+    :istilahBuku "Obat lemah lambung" ;
+    :mengobati :KH_Pengusir_serangga ;
+    :istilahBuku "Mengusir serangga" .
+
+:Kenikir_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kenikir - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Fenilpropanoid .
+
+### Labu Kuning (Cucurbita moschata Duchesne)
+:Labu_Kuning rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Labu Kuning" ;
+    :namaIndonesia "Labu Kuning" ;
+    :namaLatin "Cucurbita moschata Duchesne" ;
+    :namaAsing "Pumpkin" ;
+    :memilikiTakson :T_Cucurbita ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Berlekuk ;
+    :memilikiTepiDaun :TD_Bergerigi ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu_kasar ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Labu_Kuning_Buah ;
+    :memilikiBagian :Labu_Kuning_Biji ;
+    :farmakologi "Ekstrak metanol 70% biji dosis 448 mg/kg BB p.o memperlambat respon nyeri pada tikus (Eleiwa dkk., 2014)." .
+
+:Labu_Kuning_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Labu Kuning - Buah" ;
+    :jenisBagian :BG_Buah ;
+    :memilikiKandungan :KK_Tokoferol ;
+    :memilikiKandungan :KK_Karoten ;
+    :memilikiKandungan :KK_Lutein ;
+    :memilikiKandungan :KK_Violaksantin ;
+    :mengobati :KH_Kecacingan ;
+    :mengobati :KH_Bengkak ;
+    :mengobati :KH_Sakit_kepala .
+
+:Labu_Kuning_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Labu Kuning - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_beta_sitosterol ;
+    :memilikiKandungan :KK_Kukurbitosid_A ;
+    :mengobati :KH_Kecacingan ;
+    :mengobati :KH_Bengkak ;
+    :mengobati :KH_Sakit_kepala .
+
+### Pakis Haji (Cycas rumphii Miq.)
+:Pakis_Haji rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Pakis Haji" ;
+    :namaIndonesia "Pakis Haji" ;
+    :namaLatin "Cycas rumphii Miq." ;
+    :namaAsing "Queen sago" ;
+    :memilikiTakson :T_Cycas ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Majemuk ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Mengkilat ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiBagian :Pakis_Haji_Daun ;
+    :memilikiBagian :Pakis_Haji_Rambut_Batang ;
+    :farmakologi "Ekstrak metanol dan fraksi etil asetat daun menunjukkan efek antibakteri pada Shigella boydii dan Salmonella typhi (Khan dkk., 2011)." .
+
+:Pakis_Haji_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Pakis Haji - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :mengobati :KH_Disentri ;
+    :mengobati :KH_Luka ;
+    :istilahBuku "Luka baru" ;
+    :mengobati :KH_Pembersih_darah ;
+    :istilahBuku "Pembersih darah setelah melahirkan" .
+
+:Pakis_Haji_Rambut_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Pakis Haji - Rambut Batang" ;
+    :jenisBagian :BG_Rambut_Batang ;
+    :mengobati :KH_Luka ;
+    :istilahBuku "Luka baru" .
+
+### Cincau (Cyclea barbata Miers)
+:Cincau rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Cincau" ;
+    :namaIndonesia "Cincau" ;
+    :namaLatin "Cyclea barbata Miers" ;
+    :namaAsing "Green grass jelly" ;
+    :memilikiTakson :T_Cyclea ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Perisai ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menjari ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Rata ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiPangkalDaun :PK_Berlekuk ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Cincau_Daun ;
+    :farmakologi "Infusa daun menunjukkan efek gastroprotektif pada tikus (Siregar dan Miladiyah, 2011)." .
+
+:Cincau_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Cincau - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Triterpenoid ;
+    :memilikiKandungan :KK_3_O_glikosidik_flavonol ;
+    :mengobati :KH_Gangguan_pencernaan ;
+    :istilahBuku "Radang lambung" ;
+    :mengobati :KH_Demam_tifoid ;
+    :istilahBuku "Tipus" ;
+    :mengobati :KH_Hipertensi ;
+    :istilahBuku "Tekanan darah tinggi" ;
+    :mengobati :KH_Demam ;
+    :istilahBuku "Penurun panas" .
+
+### Terong Mandras (Cyphomandra betacea Sendtn.)
+:Terong_Mandras rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Terong Mandras" ;
+    :namaIndonesia "Terong Mandras" ;
+    :namaLatin "Cyphomandra betacea Sendtn." ;
+    :namaAsing "Tree tomato" ;
+    :memilikiTakson :T_Cyphomandra ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Bulat_memanjang ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Berlekuk ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Terong_Mandras_Buah ;
+    :farmakologi "Ekstrak kering buah dosis 200 dan 300 mg/kg BB p.o selama 7 minggu pada tikus obesitas menurunkan berat badan, glukosa darah, trigliserida, dan LDL-c (Abdul Kadir dkk., 2015)." .
+
+:Terong_Mandras_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Terong Mandras - Buah" ;
+    :jenisBagian :BG_Buah ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_beta_karoten ;
+    :memilikiKandungan :KK_Asam_askorbat ;
+    :memilikiKandungan :KK_Asam_heksadekanoat ;
+    :memilikiKandungan :KK_Asam_asetat ;
+    :memilikiKandungan :KK_Asam_propanoat ;
+    :memilikiKandungan :KK_Furfural ;
+    :memilikiKandungan :KK_Tiazol ;
+    :memilikiKandungan :KK_2_metil_1_3_4_oksadiazol ;
+    :memilikiKandungan :KK_2_3_dihidro_3_5_dihidroksi_6_metil_4H_piran_4_on ;
+    :memilikiKandungan :KK_1_3_4_oksadiazol ;
+    :mengobati :KH_Hipertensi ;
+    :istilahBuku "Tekanan darah tinggi" ;
+    :mengobati :KH_Penyegar_tubuh ;
+    :istilahBuku "Penyegar badan" .
+
+### Tepus (Etlingera coccinea (Blume) S.Sakai & Nagam.)
+:Tepus rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Tepus" ;
+    :namaIndonesia "Tepus" ;
+    :namaLatin "Etlingera coccinea (Blume) S.Sakai & Nagam." ;
+    :memilikiTakson :T_Etlingera ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Memanjang ;
+    :memilikiBentukDaun :BD_Bulat_telur_terbalik ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Berombak ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Cokelat_kemerahan ;
+    :memilikiBagian :Tepus_Daun ;
+    :memilikiBagian :Tepus_Bunga ;
+    :memilikiBagian :Tepus_Batang ;
+    :memilikiBagian :Tepus_Rimpang ;
+    :farmakologi "Ekstrak metanol, diklorometan, dan etil asetat daun menunjukkan aktivitas penghambatan bakteri S. aureus, S. epidermidis, B. subtilis, B. cereus, E. faecalis, S. pneumonia dengan MIC 0,016-0,063 mg/mL (Daniel-Jambun dkk., 2017)." .
+
+:Tepus_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tepus - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :mengobati :KH_Diare ;
+    :istilahBuku "Mencret" ;
+    :mengobati :KH_Bahan_kosmetik_dan_parfum ;
+    :istilahBuku "Bahan baku kosmetika" .
+
+:Tepus_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tepus - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :mengobati :KH_Memperbanyak_air_susu_ibu ;
+    :istilahBuku "Pelancar air susu ibu" .
+
+:Tepus_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tepus - Batang" ;
+    :jenisBagian :BG_Batang ;
+    :memilikiKandungan :KK_Glikosida_jantung ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Antrakinon ;
+    :memilikiKandungan :KK_Saponin .
+
+:Tepus_Rimpang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tepus - Rimpang" ;
+    :jenisBagian :BG_Rimpang ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_Monoterpen ;
+    :memilikiKandungan :KK_Seskuiterpen ;
+    :memilikiKandungan :KK_Diterpen ;
+    :mengobati :KH_Bahan_kosmetik_dan_parfum ;
+    :istilahBuku "Bahan baku kosmetika" .
+
+### Kecombrang (Etlingera elatior (Jack) R.M.Sm.)
+:Kecombrang rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kecombrang" ;
+    :namaIndonesia "Kecombrang" ;
+    :namaLatin "Etlingera elatior (Jack) R.M.Sm." ;
+    :namaAsing "Torch ginger" ;
+    :memilikiTakson :T_Etlingera ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Berombak ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiPangkalDaun :PK_Berlekuk ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Kecombrang_Daun ;
+    :memilikiBagian :Kecombrang_Bunga ;
+    :memilikiBagian :Kecombrang_Rimpang ;
+    :farmakologi "Ekstrak metanol bunga menghambat pertumbuhan P. aeruginosa, B. megaterium, E. coli dengan MIC 200-800 ug/mL; S. aureus, B. thuringiensis, E. coli, B. subtilis, P. mirabilis MIC 1,56-50 ug/mL (Chan dkk., 2011)." .
+
+:Kecombrang_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kecombrang - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_beta_pinen ;
+    :memilikiKandungan :KK_Karyofilen ;
+    :memilikiKandungan :KK_E_beta_farnesen ;
+    :memilikiKandungan :KK_1_1_dodekanediol_diasetat ;
+    :memilikiKandungan :KK_E_beta_dodekan .
+
+:Kecombrang_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kecombrang - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_1_dodekanol ;
+    :memilikiKandungan :KK_Dodekanol ;
+    :memilikiKandungan :KK_17_pentatriakonten ;
+    :memilikiKandungan :KK_Fenolik ;
+    :memilikiKandungan :KK_Triterpenoid ;
+    :memilikiKandungan :KK_Glikosida ;
+    :mengobati :KH_Bau_badan ;
+    :istilahBuku "Mengatasi bau badan" ;
+    :mengobati :KH_Memperbanyak_air_susu_ibu ;
+    :mengobati :KH_Pembersih_darah .
+
+:Kecombrang_Rimpang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kecombrang - Rimpang" ;
+    :jenisBagian :BG_Rimpang ;
+    :memilikiKandungan :KK_Diarilheptanoid ;
+    :memilikiKandungan :KK_Demetoksikurkumin ;
+    :memilikiKandungan :KK_1_7_bis_4_hidroksifenil_1_4_6_heptatrien_3_on ;
+    :memilikiKandungan :KK_Stigmast_4_en_3_on ;
+    :memilikiKandungan :KK_Stigmast_4_ene_3_6_dion ;
+    :memilikiKandungan :KK_Stigmast_4_en_6beta_ol_3_on ;
+    :memilikiKandungan :KK_5alfa_8alfa_epidioksiergosta_6_22_dien_3beta_ol .
+
+### Kangkung Hutan (Ipomoea fistulosa Mart. ex. Choisy)
+:Kangkung_Hutan rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kangkung Hutan" ;
+    :namaIndonesia "Kangkung Hutan" ;
+    :namaLatin "Ipomoea fistulosa Mart. ex. Choisy" ;
+    :namaAsing "Bush morning glory" ;
+    :memilikiTakson :T_Ipomoea ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Berlekuk ;
+    :memilikiPangkalDaun :PK_Rata ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Kangkung_Hutan_Daun ;
+    :memilikiBagian :Kangkung_Hutan_Bunga ;
+    :memilikiBagian :Kangkung_Hutan_Akar ;
+    :farmakologi "Ekstrak air eter daun dosis 250 dan 500 mg/kg BB p.o menurunkan volume udema pada tikus yang diinduksi karagenan." .
+
+:Kangkung_Hutan_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kangkung Hutan - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_2_epi_lentiginosin ;
+    :memilikiKandungan :KK_Swainsonin ;
+    :memilikiKandungan :KK_Kalistegin_B1 ;
+    :memilikiKandungan :KK_Kalistegin_B2 ;
+    :memilikiKandungan :KK_Kalistegin_C1 ;
+    :memilikiKandungan :KK_Kalistegin_B3 ;
+    :memilikiKandungan :KK_N_metil_trans_4_hidroksi_L_prolin ;
+    :memilikiKandungan :KK_Fenolik ;
+    :memilikiKandungan :KK_Kumarin ;
+    :memilikiKandungan :KK_Norisoprenoid ;
+    :memilikiKandungan :KK_Diterpen ;
+    :memilikiKandungan :KK_Isokumarin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Antosianosid ;
+    :memilikiKandungan :KK_Glikolipid ;
+    :memilikiKandungan :KK_Lignan ;
+    :memilikiKandungan :KK_Triterpen ;
+    :mengobati :KH_Bengkak ;
+    :mengobati :KH_Penyakit_kulit ;
+    :istilahBuku "Sakit kulit" .
+
+:Kangkung_Hutan_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kangkung Hutan - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :mengobati :KH_Bengkak ;
+    :mengobati :KH_Penyakit_kulit ;
+    :istilahBuku "Sakit kulit" .
+
+:Kangkung_Hutan_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kangkung Hutan - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :mengobati :KH_Sakit_borok_pada_hewan_ternak .
+
+### Kencur (Kaempferia galanga L.)
+:Kencur rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kencur" ;
+    :namaIndonesia "Kencur" ;
+    :namaLatin "Kaempferia galanga L." ;
+    :namaAsing "Galanga" ;
+    :memilikiTakson :T_Kaempferia ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiPangkalDaun :PK_Berlekuk ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Kencur_Daun ;
+    :memilikiBagian :Kencur_Rimpang ;
+    :farmakologi "Ekstrak etanol rimpang konsentrasi 25-100% menunjukkan zona hambat terbesar terhadap B. subtilis 29 mm dan E. coli 27 mm (Fajeriyati dan Andika, 2017). Ekstrak petroleum eter dosis 300 mg/kg BB memiliki aktivitas antiinflamasi pada tikus (Jagadish dkk., 2016)." .
+
+:Kencur_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kencur - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Terpenoid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Fenol ;
+    :memilikiKandungan :KK_Fitosterol ;
+    :memilikiKandungan :KK_Tanin .
+
+:Kencur_Rimpang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kencur - Rimpang" ;
+    :jenisBagian :BG_Rimpang ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_Etil_trans_p_metoksi_sinamat ;
+    :memilikiKandungan :KK_Pentadekan ;
+    :memilikiKandungan :KK_1_8_sineol ;
+    :memilikiKandungan :KK_g_karen ;
+    :memilikiKandungan :KK_Borneol ;
+    :memilikiKandungan :KK_Kamfen ;
+    :memilikiKandungan :KK_Kaempferol ;
+    :memilikiKandungan :KK_Kaempferid ;
+    :memilikiKandungan :KK_Sinamaldehid ;
+    :memilikiKandungan :KK_p_asam_metoksinamat ;
+    :memilikiKandungan :KK_Etil_sinamat ;
+    :mengobati :KH_Batuk ;
+    :mengobati :KH_Kembung ;
+    :mengobati :KH_Mual ;
+    :mengobati :KH_Bengkak ;
+    :mengobati :KH_Bisul .
+
+### Sosor Bebek (Bryophyllum pinnatum (Lam.) Oken)
+:Sosor_Bebek rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Sosor Bebek" ;
+    :namaIndonesia "Sosor Bebek" ;
+    :namaLatin "Bryophyllum pinnatum (Lam.) Oken" ;
+    :namaAsing "Cathedral bells" ;
+    :memilikiTakson :T_Bryophyllum ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiJenisDaun :JD_Majemuk ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiTepiDaun :TD_Bergerigi ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Sosor_Bebek_Daun ;
+    :farmakologi "Ekstrak etanol dan air batang konsentrasi 300 mg/kg BB memiliki efek antiinflamasi setara indometasin 10 mg/kg BB (Matthew dkk., 2013). Ekstrak air daun 25-800 mg/kg menghasilkan efek antinosiseptif dan menghambat radang akut (Ojewole, 2005)." .
+
+:Sosor_Bebek_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Sosor Bebek - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Asam_arakidik ;
+    :memilikiKandungan :KK_Astragalin ;
+    :memilikiKandungan :KK_Asam_behenik ;
+    :memilikiKandungan :KK_Amyrin_beta ;
+    :memilikiKandungan :KK_Benzenoid ;
+    :memilikiKandungan :KK_beta_sitosterol ;
+    :memilikiKandungan :KK_Briopolenon ;
+    :memilikiKandungan :KK_Briopolon ;
+    :memilikiKandungan :KK_Briopilin ;
+    :memilikiKandungan :KK_AC_briopilin ;
+    :memilikiKandungan :KK_Briopilol ;
+    :memilikiKandungan :KK_Briopinol ;
+    :memilikiKandungan :KK_C_briotoksin ;
+    :memilikiKandungan :KK_Bufadienolid ;
+    :memilikiKandungan :KK_Asam_kafeik ;
+    :memilikiKandungan :KK_Kampesterol ;
+    :memilikiKandungan :KK_Kardenolid ;
+    :memilikiKandungan :KK_Asam_sinamat ;
+    :memilikiKandungan :KK_Klerosterol ;
+    :memilikiKandungan :KK_Klionasterol ;
+    :memilikiKandungan :KK_Kodisterol ;
+    :memilikiKandungan :KK_Asam_kumarik ;
+    :memilikiKandungan :KK_Epigalokatekin ;
+    :memilikiKandungan :KK_Asam_ferulat ;
+    :memilikiKandungan :KK_Friedelin ;
+    :memilikiKandungan :KK_Glutinol ;
+    :memilikiKandungan :KK_Hentriakontan ;
+    :memilikiKandungan :KK_Isofukosterol ;
+    :memilikiKandungan :KK_Kaempferol ;
+    :memilikiKandungan :KK_Asam_palmitat ;
+    :memilikiKandungan :KK_Patuletin ;
+    :memilikiKandungan :KK_Peposterol ;
+    :memilikiKandungan :KK_Asam_protokatekuik ;
+    :memilikiKandungan :KK_Pseudotaraksasterol ;
+    :memilikiKandungan :KK_Piruvat ;
+    :memilikiKandungan :KK_Kuersetin ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Stigmasterol ;
+    :memilikiKandungan :KK_Asam_suksinat ;
+    :memilikiKandungan :KK_Asam_siringik ;
+    :memilikiKandungan :KK_Tarakserol ;
+    :memilikiKandungan :KK_Triakontan ;
+    :mengobati :KH_Wasir ;
+    :mengobati :KH_Luka_bakar ;
+    :mengobati :KH_Sakit_kepala ;
+    :mengobati :KH_Demam ;
+    :mengobati :KH_Batuk ;
+    :mengobati :KH_Peluruh_air_seni .
+
+### Bungur (Lagerstroemia speciosa (L.) Pers.)
+:Bungur rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Bungur" ;
+    :namaIndonesia "Bungur" ;
+    :namaLatin "Lagerstroemia speciosa (L.) Pers." ;
+    :namaAsing "Queen's crepe-myrtle" ;
+    :memilikiTakson :T_Lagerstroemia ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Elips_memanjang ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiBagian :Bungur_Daun ;
+    :memilikiBagian :Bungur_Kulit_Batang ;
+    :memilikiBagian :Bungur_Biji ;
+    :farmakologi "Ekstrak etanol 80% daun (terstandar 1% asam korosolik) dosis 32 dan 48 mg/orang selama 2 minggu menurunkan kadar glukosa darah hingga 30% (Judy dkk., 2003)." .
+
+:Bungur_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Bungur - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Asam_ursolat ;
+    :memilikiKandungan :KK_Asam_korosolat ;
+    :memilikiKandungan :KK_Asam_asiatat ;
+    :memilikiKandungan :KK_Asam_alfitolat ;
+    :memilikiKandungan :KK_Flosin_A ;
+    :memilikiKandungan :KK_Flosin_B ;
+    :memilikiKandungan :KK_Reginin_A ;
+    :memilikiKandungan :KK_Reginin_B ;
+    :memilikiKandungan :KK_Reginin_C ;
+    :memilikiKandungan :KK_Reginin_D ;
+    :memilikiKandungan :KK_Lagerstanin_A ;
+    :memilikiKandungan :KK_Lagerstanin_B ;
+    :memilikiKandungan :KK_Lagerstanin_C ;
+    :memilikiKandungan :KK_Asam_elagat ;
+    :memilikiKandungan :KK_Flavon ;
+    :mengobati :KH_Kencing_batu ;
+    :mengobati :KH_Diabetes ;
+    :istilahBuku "Kencing manis" ;
+    :mengobati :KH_Hipertensi ;
+    :istilahBuku "Tekanan darah tinggi" .
+
+:Bungur_Kulit_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Bungur - Kulit Batang" ;
+    :jenisBagian :BG_Kulit_Batang ;
+    :mengobati :KH_Diare ;
+    :mengobati :KH_Disentri ;
+    :mengobati :KH_Kencing_darah .
+
+:Bungur_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Bungur - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :mengobati :KH_Eksim ;
+    :mengobati :KH_Hipertensi ;
+    :istilahBuku "Tekanan darah tinggi" .
+
+### Duku (Lansium parasiticum (Osbeck) K.C.Sahni & Bennet)
+:Duku rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Duku" ;
+    :namaIndonesia "Duku" ;
+    :namaLatin "Lansium parasiticum (Osbeck) K.C.Sahni & Bennet" ;
+    :namaAsing "Lanzones" ;
+    :memilikiTakson :T_Lansium ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Majemuk ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Bulat_telur_terbalik ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Duku_Daun ;
+    :memilikiBagian :Duku_Ranting ;
+    :memilikiBagian :Duku_Kulit_Buah ;
+    :memilikiBagian :Duku_Biji ;
+    :memilikiBagian :Duku_Kulit_Kayu ;
+    :memilikiBagian :Duku_Tepung_Kulit_Kayu ;
+    :farmakologi "Ekstrak etanol 80% kulit buah menunjukkan aktivitas antioksidan pada uji DPPH dengan EC50 47,94 (Kee dkk., 2015)." .
+
+:Duku_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Duku - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Sikloartan .
+
+:Duku_Ranting rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Duku - Ranting" ;
+    :jenisBagian :BG_Ranting ;
+    :memilikiKandungan :KK_Lamestikumin_A_F ;
+    :memilikiKandungan :KK_Asam_lasat_3_etil_ester ;
+    :memilikiKandungan :KK_Etil_lansiolat .
+
+:Duku_Kulit_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Duku - Kulit Buah" ;
+    :jenisBagian :BG_Kulit_Buah ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_Oleoresin ;
+    :memilikiKandungan :KK_Onoseranoid_triterpen ;
+    :memilikiKandungan :KK_Asam_lansionat ;
+    :memilikiKandungan :KK_3beta_hidroksinosera_8_26_14_dien_21_on ;
+    :memilikiKandungan :KK_21alfa_hidroksinosera_8_26_14_dien_3_on ;
+    :mengobati :KH_Diare ;
+    :mengobati :KH_Demam ;
+    :mengobati :KH_Bahan_kosmetik_dan_parfum ;
+    :istilahBuku "Bahan kosmetik" .
+
+:Duku_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Duku - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Limonoid ;
+    :memilikiKandungan :KK_Andirobin ;
+    :memilikiKandungan :KK_Metil_angolensat ;
+    :memilikiKandungan :KK_Meksikanolid ;
+    :memilikiKandungan :KK_Azadiradion ;
+    :memilikiKandungan :KK_Onoseranoid ;
+    :memilikiKandungan :KK_Dukunolid ;
+    :memilikiKandungan :KK_Domestikulid_A_E ;
+    :memilikiKandungan :KK_Kokosanolid_A_C ;
+    :mengobati :KH_Kecacingan ;
+    :mengobati :KH_Demam ;
+    :mengobati :KH_Diare .
+
+:Duku_Kulit_Kayu rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Duku - Kulit Kayu" ;
+    :jenisBagian :BG_Kulit_Kayu ;
+    :mengobati :KH_Disentri .
+
+:Duku_Tepung_Kulit_Kayu rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Duku - Tepung Kulit Kayu" ;
+    :jenisBagian :BG_Tepung_Kulit_Kayu ;
+    :mengobati :KH_Luka_bekas_gigitan_kalajengking .
+
+### Tembelekan (Lantana camara L.)
+:Tembelekan rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Tembelekan" ;
+    :namaIndonesia "Tembelekan" ;
+    :namaLatin "Lantana camara L." ;
+    :namaAsing "Lantana" ;
+    :memilikiTakson :T_Lantana ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Bergerigi ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiBagian :Tembelekan_Herba ;
+    :memilikiBagian :Tembelekan_Daun ;
+    :memilikiBagian :Tembelekan_Akar ;
+    :memilikiBagian :Tembelekan_Bunga ;
+    :farmakologi "Ekstrak air daun dosis 300 dan 500 mg/kg BB p.o menunjukkan efek analgesik 22,38% dan 24,82% serta antiinflamasi 54,38% dan 61,40% (Gidwani dkk., 2009)." .
+
+:Tembelekan_Herba rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tembelekan - Herba" ;
+    :jenisBagian :BG_Herba ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_Fenolik ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Glikosida_iridoid ;
+    :memilikiKandungan :KK_Fenil_etanoid ;
+    :memilikiKandungan :KK_Oligosakarida ;
+    :memilikiKandungan :KK_Kuinin ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Triterpen ;
+    :memilikiKandungan :KK_Seskuiterpen ;
+    :memilikiKandungan :KK_Tanin .
+
+:Tembelekan_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tembelekan - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Asam_betulonat ;
+    :memilikiKandungan :KK_Asam_oleanolat ;
+    :memilikiKandungan :KK_Lantaden_A_B ;
+    :memilikiKandungan :KK_Ikterogenin ;
+    :memilikiKandungan :KK_Asam_lantanilat ;
+    :memilikiKandungan :KK_Asam_ursolat ;
+    :memilikiKandungan :KK_Hispiludin ;
+    :memilikiKandungan :KK_Pektolinarigenin ;
+    :memilikiKandungan :KK_Pektolinarin ;
+    :memilikiKandungan :KK_Kampesterol ;
+    :memilikiKandungan :KK_Stigmasterol ;
+    :memilikiKandungan :KK_beta_sitosterol ;
+    :memilikiKandungan :KK_beta_sitosteril_3_O_beta_D_glukosida ;
+    :mengobati :KH_Batuk ;
+    :mengobati :KH_Luka ;
+    :mengobati :KH_Peluruh_air_seni ;
+    :mengobati :KH_Bengkak .
+
+:Tembelekan_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tembelekan - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :mengobati :KH_Influenza ;
+    :mengobati :KH_TBC_kelenjar ;
+    :mengobati :KH_Rematik ;
+    :mengobati :KH_Keputihan .
+
+:Tembelekan_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Tembelekan - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :mengobati :KH_Asma ;
+    :mengobati :KH_TBC ;
+    :mengobati :KH_Batuk_darah .
+
+### Leng-lengan (Leucas lavandulifolia Sm.)
+:Leng_lengan rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Leng-lengan" ;
+    :namaIndonesia "Leng-lengan" ;
+    :namaLatin "Leucas lavandulifolia Sm." ;
+    :namaAsing "Lavender-leaved leucas" ;
+    :memilikiTakson :T_Leucas ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiBentukDaun :BD_Memanjang ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTepiDaun :TD_Bergerigi ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Leng_lengan_Herba ;
+    :memilikiBagian :Leng_lengan_Daun ;
+    :farmakologi "Fraksi n-heksan ekstrak etanol daun dosis 62,5 mg/kg BB p.o selama 28 hari menurunkan kadar glukosa darah pre pandial 45,99% (Anas dkk., 2014)." .
+
+:Leng_lengan_Herba rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Leng-lengan - Herba" ;
+    :jenisBagian :BG_Herba ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Triterpen ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Akasetin ;
+    :memilikiKandungan :KK_Krisoeriol ;
+    :memilikiKandungan :KK_Linifolisid ;
+    :memilikiKandungan :KK_Linifoliol ;
+    :memilikiKandungan :KK_Lupeol ;
+    :memilikiKandungan :KK_Tarakseron .
+
+:Leng_lengan_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Leng-lengan - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :mengobati :KH_Sakit_kepala ;
+    :mengobati :KH_Sukar_tidur ;
+    :mengobati :KH_Kecacingan ;
+    :mengobati :KH_Luka ;
+    :istilahBuku "Luka terbuka" ;
+    :mengobati :KH_Diabetes ;
+    :istilahBuku "Kencing manis" .
+
+### Adem Ati (Litsea glutinosa (Lour.) C.B.Rob.)
+:Adem_Ati rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Adem Ati" ;
+    :namaIndonesia "Adem Ati" ;
+    :namaLatin "Litsea glutinosa (Lour.) C.B.Rob." ;
+    :namaAsing "Bollygum" ;
+    :memilikiTakson :T_Litsea ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Bulat_telur_terbalik ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiUjungDaun :UD_Membulat ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Adem_Ati_Daun ;
+    :memilikiBagian :Adem_Ati_Kulit_Batang .
+
+:Adem_Ati_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Adem Ati - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Glikosida ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Triterpenoid ;
+    :mengobati :KH_Diare ;
+    :mengobati :KH_Disentri .
+
+:Adem_Ati_Kulit_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Adem Ati - Kulit Batang" ;
+    :jenisBagian :BG_Kulit_Batang ;
+    :memilikiKandungan :KK_Boldine ;
+    :memilikiKandungan :KK_Laurotetanine ;
+    :memilikiKandungan :KK_Norboldine ;
+    :memilikiKandungan :KK_N_metillaurotetanin ;
+    :memilikiKandungan :KK_Sebiferine ;
+    :mengobati :KH_Diare ;
+    :mengobati :KH_Disentri ;
+    :mengobati :KH_Rematik .
+
+### Cempaka (Magnolia champaca (L.) Baill. ex Pierre)
+:Cempaka rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Cempaka" ;
+    :namaIndonesia "Cempaka" ;
+    :namaLatin "Magnolia champaca (L.) Baill. ex Pierre" ;
+    :namaAsing "Champak" ;
+    :memilikiTakson :T_Magnolia ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Meruncing ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Cempaka_Daun ;
+    :memilikiBagian :Cempaka_Bunga ;
+    :memilikiBagian :Cempaka_Kulit_Batang .
+
+:Cempaka_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Cempaka - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Tanin .
+
+:Cempaka_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Cempaka - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_Linalool ;
+    :memilikiKandungan :KK_Metil_benzoat ;
+    :mengobati :KH_Demam ;
+    :mengobati :KH_Bahan_kosmetik_dan_parfum ;
+    :istilahBuku "Bahan parfum" .
+
+:Cempaka_Kulit_Batang rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Cempaka - Kulit Batang" ;
+    :jenisBagian :BG_Kulit_Batang ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Parthenolid ;
+    :mengobati :KH_Demam .
+
+### Apel (Malus domestica Borkh.)
+:Apel rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Apel" ;
+    :namaIndonesia "Apel" ;
+    :namaLatin "Malus domestica Borkh." ;
+    :namaAsing "Apple" ;
+    :memilikiTakson :T_Malus ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiBentukDaun :BD_Bulat_telur_terbalik ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Bergerigi ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu_halus ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Apel_Buah .
+
+:Apel_Buah rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Apel - Buah" ;
+    :jenisBagian :BG_Buah ;
+    :memilikiKandungan :KK_Kuersetin ;
+    :memilikiKandungan :KK_Katekin ;
+    :memilikiKandungan :KK_Asam_klorogenik ;
+    :memilikiKandungan :KK_Floretin ;
+    :memilikiKandungan :KK_Asam_malat ;
+    :memilikiKandungan :KK_Pektin ;
+    :memilikiKandungan :KK_Serat ;
+    :mengobati :KH_Pencegah_kanker ;
+    :mengobati :KH_Menurunkan_kolesterol ;
+    :mengobati :KH_Antioksidan .
+
+### Garut (Maranta arundinacea L.)
+:Garut rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Garut" ;
+    :namaIndonesia "Garut" ;
+    :namaLatin "Maranta arundinacea L." ;
+    :namaAsing "Arrowroot" ;
+    :memilikiTakson :T_Maranta ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiPangkalDaun :PK_Rata ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Garut_Umbi ;
+    :memilikiBagian :Garut_Daun .
+
+:Garut_Umbi rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Garut - Umbi" ;
+    :jenisBagian :BG_Umbi ;
+    :memilikiKandungan :KK_Pati ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Saponin ;
+    :mengobati :KH_Diare ;
+    :mengobati :KH_Gangguan_pencernaan .
+
+:Garut_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Garut - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :mengobati :KH_Bisul .
+
+### Spearmint (Mentha spicata L.)
+:Spearmint rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Spearmint" ;
+    :namaIndonesia "Spearmint" ;
+    :namaLatin "Mentha spicata L." ;
+    :namaAsing "Spear mint" ;
+    :memilikiTakson :T_Mentha ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Beringgit ;
+    :memilikiTepiDaun :TD_Bergerigi ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Spearmint_Herba .
+
+:Spearmint_Herba rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Spearmint - Herba" ;
+    :jenisBagian :BG_Herba ;
+    :memilikiKandungan :KK_Karvon ;
+    :memilikiKandungan :KK_Limonen ;
+    :memilikiKandungan :KK_Dihidrokarvon ;
+    :memilikiKandungan :KK_1_8_sineol ;
+    :memilikiKandungan :KK_Mentol ;
+    :memilikiKandungan :KK_Pulegon ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :mengobati :KH_Kembung ;
+    :istilahBuku "Perut kembung" ;
+    :mengobati :KH_Mual ;
+    :mengobati :KH_Masuk_angin ;
+    :mengobati :KH_Penghilang_bau_mulut .
+
+### Bunga Pukul Empat (Mirabilis jalapa L.)
+:Bunga_Pukul_Empat rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Bunga Pukul Empat" ;
+    :namaIndonesia "Bunga Pukul Empat" ;
+    :namaLatin "Mirabilis jalapa L." ;
+    :namaAsing "Four o'clock" ;
+    :memilikiTakson :T_Mirabilis ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Terpancung ;
+    :memilikiPangkalDaun :PK_Berlekuk ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Bunga_Pukul_Empat_Daun ;
+    :memilikiBagian :Bunga_Pukul_Empat_Akar ;
+    :memilikiBagian :Bunga_Pukul_Empat_Bunga .
+
+:Bunga_Pukul_Empat_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Bunga Pukul Empat - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Terpenoid ;
+    :mengobati :KH_Bisul ;
+    :mengobati :KH_Bengkak .
+
+:Bunga_Pukul_Empat_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Bunga Pukul Empat - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Trigonelin ;
+    :memilikiKandungan :KK_Arabinosa ;
+    :memilikiKandungan :KK_Brassikasterol ;
+    :mengobati :KH_Radang_amandel ;
+    :mengobati :KH_Infeksi_saluran_kencing .
+
+:Bunga_Pukul_Empat_Bunga rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Bunga Pukul Empat - Bunga" ;
+    :jenisBagian :BG_Bunga ;
+    :mengobati :KH_Batuk .
+
+### Oleander (Nerium oleander L.)
+:Oleander rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Oleander" ;
+    :namaIndonesia "Oleander" ;
+    :namaLatin "Nerium oleander L." ;
+    :namaAsing "Oleander" ;
+    :memilikiTakson :T_Nerium ;
+    :memilikiHabitus :H_Perdu ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Memanjang ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Oleander_Daun .
+
+:Oleander_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Oleander - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Oleandrin ;
+    :memilikiKandungan :KK_Neriin ;
+    :memilikiKandungan :KK_Glikosida_jantung ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Tanin ;
+    :mengobati :KH_Penyakit_jantung ;
+    :mengobati :KH_Penyakit_kulit .
+
+### Kemangi (Ocimum basilicum L.)
+:Kemangi rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Kemangi" ;
+    :namaIndonesia "Kemangi" ;
+    :namaLatin "Ocimum basilicum L." ;
+    :namaAsing "Sweet basil" ;
+    :memilikiTakson :T_Ocimum ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Beringgit ;
+    :memilikiTepiDaun :TD_Bergerigi ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiPangkalDaun :PK_Meruncing ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiWarnaDaun :WD_Ungu ;
+    :memilikiBagian :Kemangi_Daun .
+
+:Kemangi_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Kemangi - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_Linalool ;
+    :memilikiKandungan :KK_Eugenol ;
+    :memilikiKandungan :KK_Metil_eugenol ;
+    :memilikiKandungan :KK_Sitral ;
+    :memilikiKandungan :KK_Geraniol ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Tanin ;
+    :mengobati :KH_Kembung ;
+    :istilahBuku "Perut kembung" ;
+    :mengobati :KH_Demam ;
+    :mengobati :KH_Penambah_nafsu_makan ;
+    :mengobati :KH_Bau_badan .
+
+### Lampes (Ocimum tenuiflorum L.)
+:Lampes rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Lampes" ;
+    :namaIndonesia "Lampes" ;
+    :namaLatin "Ocimum tenuiflorum L." ;
+    :namaAsing "Holy basil" ;
+    :memilikiTakson :T_Ocimum ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Bergerigi ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiWarnaDaun :WD_Ungu ;
+    :memilikiBagian :Lampes_Daun .
+
+:Lampes_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Lampes - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_Eugenol ;
+    :memilikiKandungan :KK_Metil_eugenol ;
+    :memilikiKandungan :KK_Kariofilen ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Tanin ;
+    :mengobati :KH_Batuk ;
+    :mengobati :KH_Demam ;
+    :mengobati :KH_Masuk_angin ;
+    :mengobati :KH_Diare .
+
+### Bengkuang (Pachyrhizus erosus (L.) Urb.)
+:Bengkuang rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Bengkuang" ;
+    :namaIndonesia "Bengkuang" ;
+    :namaLatin "Pachyrhizus erosus (L.) Urb." ;
+    :namaAsing "Yam bean" ;
+    :memilikiTakson :T_Pachyrhizus ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Majemuk ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiUjungDaun :UD_Membulat ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Berbulu ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Bengkuang_Umbi ;
+    :memilikiBagian :Bengkuang_Biji .
+
+:Bengkuang_Umbi rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Bengkuang - Umbi" ;
+    :jenisBagian :BG_Umbi ;
+    :memilikiKandungan :KK_Pati ;
+    :memilikiKandungan :KK_Vitamin_C ;
+    :memilikiKandungan :KK_Serat ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Saponin ;
+    :mengobati :KH_Sariawan ;
+    :mengobati :KH_Demam .
+
+:Bengkuang_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Bengkuang - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Rotenon ;
+    :memilikiKandungan :KK_Pakierizon ;
+    :mengobati :KH_Pengusir_serangga ;
+    :istilahBuku "Insektisida alami" .
+
+### Pandan Wangi (Pandanus amaryllifolius Roxb.)
+:Pandan_Wangi rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Pandan Wangi" ;
+    :namaIndonesia "Pandan Wangi" ;
+    :namaLatin "Pandanus amaryllifolius Roxb." ;
+    :namaAsing "Fragrant pandan" ;
+    :memilikiTakson :T_Pandanus ;
+    :memilikiHabitus :H_Perdu ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Memanjang ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTepiDaun :TD_Berduri ;
+    :memilikiTulangDaun :TL_Sejajar ;
+    :memilikiPermukaanDaun :PM_Licin ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Rata ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Pandan_Wangi_Daun .
+
+:Pandan_Wangi_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Pandan Wangi - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Minyak_atsiri ;
+    :memilikiKandungan :KK_2_asetil_1_pirolin ;
+    :mengobati :KH_Rematik ;
+    :mengobati :KH_Pegal_linu ;
+    :mengobati :KH_Lemah_saraf ;
+    :mengobati :KH_Gelisah .
+
+### Petai (Parkia speciosa Hassk.)
+:Petai rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Petai" ;
+    :namaIndonesia "Petai" ;
+    :namaLatin "Parkia speciosa Hassk." ;
+    :namaAsing "Nitta tree" ;
+    :memilikiTakson :T_Parkia ;
+    :memilikiHabitus :H_Pohon ;
+    :memilikiJenisDaun :JD_Majemuk ;
+    :memilikiBentukDaun :BD_Memanjang ;
+    :memilikiUjungDaun :UD_Membulat ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Petai_Biji ;
+    :memilikiBagian :Petai_Kulit_Biji .
+
+:Petai_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Petai - Biji" ;
+    :jenisBagian :BG_Biji ;
+    :memilikiKandungan :KK_Tiamin ;
+    :memilikiKandungan :KK_Asam_nikotinat ;
+    :memilikiKandungan :KK_beta_sitosterol ;
+    :memilikiKandungan :KK_Stigmasterol ;
+    :memilikiKandungan :KK_Kampesterol ;
+    :memilikiKandungan :KK_Sikloartenol ;
+    :memilikiKandungan :KK_Asam_lemak ;
+    :mengobati :KH_Kecacingan ;
+    :mengobati :KH_Diabetes ;
+    :mengobati :KH_Hipertensi .
+
+:Petai_Kulit_Biji rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Petai - Kulit Biji" ;
+    :jenisBagian :BG_Kulit_Biji ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Saponin .
+
+### Balsem (Polygala paniculata L.)
+:Balsem rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Balsem" ;
+    :namaIndonesia "Balsem" ;
+    :namaLatin "Polygala paniculata L." ;
+    :namaAsing "Orosne" ;
+    :memilikiTakson :T_Polygala ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiBentukDaun :BD_Lanset_memanjang ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiWarnaDaun :WD_Hijau ;
+    :memilikiBagian :Balsem_Herba ;
+    :memilikiBagian :Balsem_Akar ;
+    :farmakologi "Ekstrak hidroalkohol daun dosis 0,001-10 mg/kg BB menunjukkan efek analgesik pada beberapa model nyeri pada mencit; efektivitas lebih tinggi pada fase nyeri inflamasi akibat formalin (Lapa dkk., 2009)." .
+
+:Balsem_Herba rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Balsem - Herba" ;
+    :jenisBagian :BG_Herba ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Glomeratid_A_D ;
+    :memilikiKandungan :KK_Arilanin ;
+    :mengobati :KH_Demam .
+
+:Balsem_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Balsem - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :mengobati :KH_Demam .
+
+### Krokot (Portulaca oleracea L.)
+:Krokot rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Krokot" ;
+    :namaIndonesia "Krokot" ;
+    :namaLatin "Portulaca oleracea L." ;
+    :namaAsing "Purslane" ;
+    :memilikiTakson :T_Portulaca ;
+    :memilikiHabitus :H_Terna ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Oval ;
+    :memilikiBentukDaun :BD_Bulat_telur_terbalik ;
+    :memilikiUjungDaun :UD_Rompang ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiUjungDaun :UD_Membulat ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Licin ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Hijau_tua ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Krokot_Herba ;
+    :farmakologi "Ekstrak air dan etanol menunjukkan aktivitas gastroprotektif pada model ulkus tikus. Ekstrak metil alkohol 70% menunjukkan aktivitas antibakteri terhadap beberapa bakteri dan aktivitas antijamur terhadap Candida albicans (Karimi dkk., 2004; Elkhayat dkk., 2008)." .
+
+:Krokot_Herba rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Krokot - Herba" ;
+    :jenisBagian :BG_Herba ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Portulakanon_B_D ;
+    :memilikiKandungan :KK_Kaemferol ;
+    :memilikiKandungan :KK_Myrisetin ;
+    :memilikiKandungan :KK_Luteolin ;
+    :memilikiKandungan :KK_Apigenin ;
+    :memilikiKandungan :KK_Kuersetin ;
+    :memilikiKandungan :KK_Genistein ;
+    :memilikiKandungan :KK_Genistin ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Dopa ;
+    :memilikiKandungan :KK_Dopamin ;
+    :memilikiKandungan :KK_Noradrenalin ;
+    :memilikiKandungan :KK_Olerasein_A_D ;
+    :memilikiKandungan :KK_Polisakarida ;
+    :memilikiKandungan :KK_Asam_lemak ;
+    :memilikiKandungan :KK_Terpenoid ;
+    :memilikiKandungan :KK_Portulosid_A_B ;
+    :memilikiKandungan :KK_Sterol ;
+    :memilikiKandungan :KK_beta_Karoten ;
+    :memilikiKandungan :KK_Glutation ;
+    :memilikiKandungan :KK_Melatonin ;
+    :memilikiKandungan :KK_Portulaserebrosid_A ;
+    :memilikiKandungan :KK_Katekol ;
+    :memilikiKandungan :KK_Bergapten ;
+    :mengobati :KH_Sembelit ;
+    :mengobati :KH_Demam ;
+    :mengobati :KH_Gangguan_pencernaan .
+
+### Jaring Emas (Pseuderanthemum carruthersii (Seem.) Guillaumin)
+:Jaring_Emas rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Jaring Emas" ;
+    :namaIndonesia "Jaring Emas" ;
+    :namaLatin "Pseuderanthemum carruthersii (Seem.) Guillaumin" ;
+    :namaAsing "False Eranthemum" ;
+    :memilikiTakson :T_Pseuderanthemum ;
+    :memilikiHabitus :H_Perdu ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Bulat_telur ;
+    :memilikiBentukDaun :BD_Bulat_telur_memanjang ;
+    :memilikiBentukDaun :BD_Lanset ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiUjungDaun :UD_Membulat ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTepiDaun :TD_Bercangap ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Tumpul ;
+    :memilikiPangkalDaun :PK_Membulat ;
+    :memilikiWarnaDaun :WD_Bervariasi ;
+    :memilikiBagian :Jaring_Emas_Daun ;
+    :memilikiBagian :Jaring_Emas_Akar ;
+    :farmakologi "Ekstrak metanol dan kloroform akar yang diuji dengan brine shrimp lethality test tidak bersifat toksik karena nilai LD50 masing-masing lebih besar dari 1.000 ppm (Rakhmawati dkk., 1993)." .
+
+:Jaring_Emas_Daun rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Jaring Emas - Daun" ;
+    :jenisBagian :BG_Daun ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Saponin ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Polifenol ;
+    :memilikiKandungan :KK_Darendosid_B ;
+    :memilikiKandungan :KK_Verbaskosid ;
+    :memilikiKandungan :KK_Isoverbaskosid ;
+    :memilikiKandungan :KK_Martynosid ;
+    :memilikiKandungan :KK_Leukoseptosid_A ;
+    :memilikiKandungan :KK_Jionosid_D ;
+    :mengobati :KH_Peluruh_air_seni ;
+    :mengobati :KH_Bisul ;
+    :mengobati :KH_Borok .
+
+:Jaring_Emas_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Jaring Emas - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Urasil ;
+    :memilikiKandungan :KK_Adenin ;
+    :memilikiKandungan :KK_Indol_3_karboksaldehid .
+
+### Pule Pandak (Rauvolfia serpentina (L.) Benth. ex Kurz)
+:Pule_Pandak rdf:type owl:NamedIndividual , :Tanaman_Obat ;
+    rdfs:label "Pule Pandak" ;
+    :namaIndonesia "Pule Pandak" ;
+    :namaLatin "Rauvolfia serpentina (L.) Benth. ex Kurz" ;
+    :namaAsing "Snakeroot" ;
+    :memilikiTakson :T_Rauvolfia ;
+    :memilikiHabitus :H_Semak ;
+    :memilikiJenisDaun :JD_Tunggal ;
+    :memilikiBentukDaun :BD_Elips ;
+    :memilikiBentukDaun :BD_Memanjang ;
+    :memilikiBentukDaun :BD_Bulat_telur_terbalik_memanjang ;
+    :memilikiBentukDaun :BD_Lanset_terbalik ;
+    :memilikiUjungDaun :UD_Tumpul ;
+    :memilikiUjungDaun :UD_Runcing ;
+    :memilikiUjungDaun :UD_Meruncing ;
+    :memilikiTepiDaun :TD_Rata ;
+    :memilikiTepiDaun :TD_Berombak ;
+    :memilikiTulangDaun :TL_Menyirip ;
+    :memilikiPermukaanDaun :PM_Gundul ;
+    :memilikiPangkalDaun :PK_Runcing ;
+    :memilikiWarnaDaun :WD_Hijau_muda ;
+    :memilikiBagian :Pule_Pandak_Akar ;
+    :farmakologi "Akar dan alkaloidnya memiliki aktivitas antihipertensi dengan mengurangi cadangan katekolamin pada jaringan perifer. Efek sedatif berkaitan dengan pengurangan katekolamin dan serotonin di otak (Lobay, 2015)." .
+
+:Pule_Pandak_Akar rdf:type owl:NamedIndividual , :Bagian_Tumbuhan ;
+    rdfs:label "Pule Pandak - Akar" ;
+    :jenisBagian :BG_Akar ;
+    :memilikiKandungan :KK_Flavonoid ;
+    :memilikiKandungan :KK_Fitosterol ;
+    :memilikiKandungan :KK_Oleoresin ;
+    :memilikiKandungan :KK_Steroid ;
+    :memilikiKandungan :KK_Tanin ;
+    :memilikiKandungan :KK_Alkaloid ;
+    :memilikiKandungan :KK_Alkaloid_indol ;
+    :memilikiKandungan :KK_Ajmalidin ;
+    :memilikiKandungan :KK_Ajmalin ;
+    :memilikiKandungan :KK_Ajmalinin ;
+    :memilikiKandungan :KK_Ajmalikin ;
+    :memilikiKandungan :KK_Arikin ;
+    :memilikiKandungan :KK_Kaneskin ;
+    :memilikiKandungan :KK_Korianthin ;
+    :memilikiKandungan :KK_Deserpidin ;
+    :memilikiKandungan :KK_Isoajmalin ;
+    :memilikiKandungan :KK_Isoserin ;
+    :memilikiKandungan :KK_Isoserpilin ;
+    :memilikiKandungan :KK_Lankaneskin ;
+    :memilikiKandungan :KK_Neoajmalin ;
+    :memilikiKandungan :KK_Papaverin ;
+    :memilikiKandungan :KK_Raubasin ;
+    :memilikiKandungan :KK_Raucaffricine ;
+    :memilikiKandungan :KK_Rauhimbin ;
+    :memilikiKandungan :KK_Rauwolfinin ;
+    :memilikiKandungan :KK_Recanescine ;
+    :memilikiKandungan :KK_Resinamin ;
+    :memilikiKandungan :KK_Reserpilin ;
+    :memilikiKandungan :KK_Reserpin ;
+    :memilikiKandungan :KK_Reserpinin ;
+    :memilikiKandungan :KK_Sarpagin ;
+    :memilikiKandungan :KK_Serpentin ;
+    :memilikiKandungan :KK_Serpentinin ;
+    :memilikiKandungan :KK_Tebain ;
+    :memilikiKandungan :KK_Yohimbin ;
+    :memilikiKandungan :KK_Yohimbinin ;
+    :mengobati :KH_Kolera ;
+    :mengobati :KH_Hipertensi .
