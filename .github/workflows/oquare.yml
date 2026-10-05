@@ -30,6 +30,6 @@ jobs:
       - name: Run OQuaRE
         uses: tecnomod-um/oquare-metrics@v3.0
         with:
-          ontology-files: ontologi_tanaman_obat.rdf
+          ontology-files: ontologi_tanaman_obat_v2.ttl
           contents-folder: OQuaRE
           reasoner: ELK
